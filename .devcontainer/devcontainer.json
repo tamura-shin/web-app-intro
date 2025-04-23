@@ -1,0 +1,15 @@
+{
+  "name": "testCodespaces",
+  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.black-formatter",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt"
+}
