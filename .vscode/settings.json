@@ -1,0 +1,19 @@
+{
+    // Pythonのフォーマッタを保存時に適用
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    // HTMLのフォーマッタを保存時に適用
+    "[html]": {
+        "editor.formatOnSave": true
+    },
+    // CSSのフォーマッタを保存時に適用
+    "[css]": {
+        "editor.formatOnSave": true
+    },
+    // JavaScriptのフォーマッタを保存時に適用
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+}
