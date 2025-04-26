@@ -268,6 +268,85 @@
 &lt;!-- これはコメントです。メモを残すのに便利です。 --&gt;
 &lt;!-- &lt;p&gt;この段落はコメントアウトされているため表示されません。&lt;/p&gt; --&gt;</code></pre>
 
+    <h2>テーブル (Table) - <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>,
+        <code>&lt;td&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>データを表形式で表示するにはテーブル関連のタグを使います。</p>
+        <ul>
+            <li><code>&lt;table&gt;</code>: テーブル全体を囲みます。</li>
+            <li><code>&lt;tr&gt;</code>: テーブルの行 (Table Row) を定義します。</li>
+            <li><code>&lt;th&gt;</code>: テーブルの見出しセル (Table Header) を定義します。通常、太字かつ中央揃えで表示されます。<code>&lt;tr&gt;</code>
+                の中に配置します。</li>
+            <li><code>&lt;td&gt;</code>: テーブルのデータセル (Table Data) を定義します。<code>&lt;tr&gt;</code> の中に配置します。</li>
+        </ul>
+        <p>例：</p>
+        <pre><code>&lt;table border="1"&gt; &lt;!-- border属性は見た目のためですが、CSSでの装飾が推奨されます --&gt;
+  &lt;tr&gt;
+    &lt;th&gt;見出し1&lt;/th&gt;
+    &lt;th&gt;見出し2&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;データ1&lt;/td&gt;
+    &lt;td&gt;データ2&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <p><code>border="1"</code> はテーブルに枠線を表示しますが、現在ではCSSでスタイルを指定するのが一般的です。</p>
+    </div>
+    <div class="example">
+        <h3>簡単なテーブルの例</h3>
+        <table border="1" style="border-collapse: collapse; width: 50%;">
+            <thead>
+                <tr>
+                    <th>名前</th>
+                    <th>年齢</th>
+                    <th>職業</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>山田 太郎</td>
+                    <td>30</td>
+                    <td>エンジニア</td>
+                </tr>
+                <tr>
+                    <td>佐藤 花子</td>
+                    <td>25</td>
+                    <td>デザイナー</td>
+                </tr>
+                <tr>
+                    <td>鈴木 一郎</td>
+                    <td>42</td>
+                    <td>マネージャー</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 0.8em; margin-top: 5px;">(注: 枠線とスタイルは例示のためインラインCSSとborder属性を使用しています)</p>
+        <p>テーブルの構造をより明確にするために <code>&lt;thead&gt;</code> (ヘッダー部分), <code>&lt;tbody&gt;</code> (本体部分),
+            <code>&lt;tfoot&gt;</code> (フッター部分) タグを使うことも推奨されます。</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;table border="1"&gt; &lt;!-- CSSでの装飾推奨 --&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;名前&lt;/th&gt;
+      &lt;th&gt;年齢&lt;/th&gt;
+      &lt;th&gt;職業&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;山田 太郎&lt;/td&gt;
+      &lt;td&gt;30&lt;/td&gt;
+      &lt;td&gt;エンジニア&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;佐藤 花子&lt;/td&gt;
+      &lt;td&gt;25&lt;/td&gt;
+      &lt;td&gt;デザイナー&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
     <h2>まとめと次のステップ</h2>
     <p>ここまでで、HTMLの基本的なタグの使い方を学びました。これらのタグを組み合わせることで、簡単なウェブページを作成できます。</p>
     <ul>
