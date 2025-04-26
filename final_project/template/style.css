@@ -1,0 +1,129 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+#add-todo-form label,
+#add-todo-form input[type="text"] {
+    display: block;
+    margin-bottom: 10px;
+    width: 95%;
+    /* Adjust width to prevent overflow */
+}
+
+#add-todo-form input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#add-todo-form button {
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-todo-form button:hover {
+    background-color: #4cae4c;
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#todo-list li {
+    background: #eee;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    word-wrap: break-word;
+    /* Prevent long text overflow */
+    overflow: hidden;
+    /* Hide overflow */
+}
+
+#todo-list li.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+#todo-list li .content {
+    flex-grow: 1;
+    /* Allow content to take available space */
+    margin: 0 10px;
+    /* Add spacing */
+    overflow: hidden;
+    /* Hide overflow */
+    text-overflow: ellipsis;
+    /* Add ellipsis for overflow */
+}
+
+#todo-list li .content .description {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 4px;
+}
+
+#todo-list li .actions button {
+    margin-left: 5px;
+    padding: 5px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+#todo-list li .actions .edit-button {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+#todo-list li .actions .edit-button:hover {
+    background-color: #ec971f;
+}
+
+#todo-list li .actions .delete-button {
+    background-color: #d9534f;
+    color: white;
+}
+
+#todo-list li .actions .delete-button:hover {
+    background-color: #c9302c;
+}
+
+#todo-list input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
