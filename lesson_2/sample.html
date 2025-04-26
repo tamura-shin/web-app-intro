@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML入門教材サンプル</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            /* 横スクロール可能に */
+        }
+
+        img {
+            max-width: 100%;
+            /* 画像が親要素を超えないように */
+            height: auto;
+        }
+
+        .example {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .tag-explanation {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>HTML入門 - 基本的なタグを学ぼう</h1>
+
+    <p>このページは、HTMLの基本的なタグとその使い方を学ぶための教材サンプルです。</p>
+
+    <h2>HTML文書の基本構造</h2>
+    <p>すべてのHTML文書は、次のような基本的な構造を持っています。</p>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;ページのタイトル&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- ここにページの内容を書きます --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <ul>
+        <li><code>&lt;!DOCTYPE html&gt;</code>: この文書がHTML5であることを宣言します。</li>
+        <li><code>&lt;html&gt;</code>: HTML文書全体のルート（根っこ）要素です。<code>lang="ja"</code>は、このページの言語が日本語であることを示します。</li>
+        <li><code>&lt;head&gt;</code>: 文書のメタ情報（文字コード、タイトルなど）を含みます。ブラウザには直接表示されません。</li>
+        <li><code>&lt;meta charset="UTF-8"&gt;</code>: 文字コードをUTF-8に指定します。日本語などの多言語を正しく表示するために重要です。</li>
+        <li><code>&lt;title&gt;</code>: ブラウザのタブや検索結果に表示されるページのタイトルを指定します。</li>
+        <li><code>&lt;body&gt;</code>: 実際にブラウザに表示されるコンテンツ（テキスト、画像、リンクなど）を記述します。</li>
+    </ul>
+
+    <h2>見出し (Headings) - <code>&lt;h1&gt;</code> から <code>&lt;h6&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>見出しは、文章の構造を示すために使います。<code>&lt;h1&gt;</code>が最も大きな見出しで、<code>&lt;h6&gt;</code>が最も小さな見出しです。</p>
+        <p>例： <code>&lt;h1&gt;大見出し&lt;/h1&gt;</code></p>
+    </div>
+    <div class="example">
+        <h1>これはh1見出しです</h1>
+        <h2>これはh2見出しです</h2>
+        <h3>これはh3見出しです</h3>
+        <h4>これはh4見出しです</h4>
+        <h5>これはh5見出しです</h5>
+        <h6>これはh6見出しです</h6>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;h1&gt;これはh1見出しです&lt;/h1&gt;
+&lt;h2&gt;これはh2見出しです&lt;/h2&gt;
+&lt;h3&gt;これはh3見出しです&lt;/h3&gt;</code></pre>
+
+    <h2>段落 (Paragraph) - <code>&lt;p&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>文章のまとまり（段落）を作るには<code>&lt;p&gt;</code>タグを使います。</p>
+        <p>例： <code>&lt;p&gt;これは段落です。&lt;/p&gt;</code></p>
+    </div>
+    <div class="example">
+        <p>これは最初の段落です。HTMLはウェブページの構造を定義するための言語です。</p>
+        <p>これは二つ目の段落です。タグを使って要素をマークアップします。</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;p&gt;これは最初の段落です。HTMLはウェブページの構造を定義するための言語です。&lt;/p&gt;
+&lt;p&gt;これは二つ目の段落です。タグを使って要素をマークアップします。&lt;/p&gt;</code></pre>
+
+    <h2>リンク (Link) - <code>&lt;a&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>他のページやウェブサイトへのリンクを作成するには<code>&lt;a&gt;</code>タグを使います。<code>href</code>属性にリンク先のURLを指定します。</p>
+        <p>例： <code>&lt;a href="https://www.google.com"&gt;Googleへのリンク&lt;/a&gt;</code></p>
+    </div>
+    <div class="example">
+        <p><a href="https://www.google.com" target="_blank">Googleを新しいタブで開く</a></p>
+        <p><a href="#top">ページトップへ戻る</a> (このページ内リンク)</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;!-- 外部リンク --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;Googleを新しいタブで開く&lt;/a&gt;
+
+&lt;!-- ページ内リンク (id="top" がページのどこかにある想定) --&gt;
+&lt;a href="#top"&gt;ページトップへ戻る&lt;/a&gt;</code></pre>
+    <p><code>target="_blank"</code> を追加すると、リンクが新しいタブまたはウィンドウで開かれます。</p>
+
+    <h2>画像 (Image) - <code>&lt;img&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>ページに画像を表示するには<code>&lt;img&gt;</code>タグを使います。このタグは閉じタグが必要ありません。</p>
+        <ul>
+            <li><code>src</code>属性: 表示する画像のファイルパスまたはURLを指定します。</li>
+            <li><code>alt</code>属性: 画像が表示されない場合や、スクリーンリーダー（視覚障がい者向けの読み上げソフト）が使用された場合に表示される代替テキストを指定します。これは非常に重要です。</li>
+            <li><code>width</code>属性 / <code>height</code>属性: 画像の幅や高さを指定できます（CSSでの指定が推奨されることも多いです）。</li>
+        </ul>
+        <p>例： <code>&lt;img src="image.jpg" alt="説明的な代替テキスト"&gt;</code></p>
+        <p>コード内で画像タグを示す場合は <code>&lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt;</code> のように書きます。</p>
+    </div>
+    <div class="example">
+        <p>以下にサンプル画像を表示します（実際には表示されません）。</p>
+        <img src="images/sample.jpg" alt="サンプル画像の代替テキスト" width="200">
+        <p>(注: このサンプルでは画像ファイルを用意していないため、代替テキストが表示されるか、壊れた画像のアイコンが表示されます)</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;!-- ローカルの画像ファイルを表示 --&gt;
+&lt;img src="images/sample.jpg" alt="サンプル画像の代替テキスト" width="200"&gt;
+
+&lt;!-- ウェブ上の画像を表示 --&gt;
+&lt;img src="https://via.placeholder.com/150" alt="プレースホルダー画像"&gt;</code></pre>
+
+    <h2>リスト (List) - <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>項目をリスト表示するにはリストタグを使います。</p>
+        <ul>
+            <li><code>&lt;ul&gt;</code>: 順序なしリスト (Unordered List)。通常、箇条書き（点など）で表示されます。</li>
+            <li><code>&lt;ol&gt;</code>: 順序付きリスト (Ordered List)。通常、番号付きで表示されます。</li>
+            <li><code>&lt;li&gt;</code>: リスト項目 (List Item)。<code>&lt;ul&gt;</code> または <code>&lt;ol&gt;</code> の中に記述します。
+            </li>
+        </ul>
+        <p>例： <code>&lt;ul&gt;&lt;li&gt;項目1&lt;/li&gt;&lt;li&gt;項目2&lt;/li&gt;&lt;/ul&gt;</code></p>
+    </div>
+    <div class="example">
+        <h3>順序なしリスト (ul)</h3>
+        <ul>
+            <li>りんご</li>
+            <li>バナナ</li>
+            <li>オレンジ</li>
+        </ul>
+
+        <h3>順序付きリスト (ol)</h3>
+        <ol>
+            <li>最初にこれをやる</li>
+            <li>次にこれをやる</li>
+            <li>最後にこれをやる</li>
+        </ol>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;h3&gt;順序なしリスト (ul)&lt;/h3&gt;
+&lt;ul&gt;
+    &lt;li&gt;りんご&lt;/li&gt;
+    &lt;li&gt;バナナ&lt;/li&gt;
+    &lt;li&gt;オレンジ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;順序付きリスト (ol)&lt;/h3&gt;
+&lt;ol&gt;
+    &lt;li&gt;最初にこれをやる&lt;/li&gt;
+    &lt;li&gt;次にこれをやる&lt;/li&gt;
+    &lt;li&gt;最後にこれをやる&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <h2>強調 (Emphasis) - <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>テキストの一部を強調するために使います。</p>
+        <ul>
+            <li><code>&lt;strong&gt;</code>: 重要性が高い内容を示します。通常、太字で表示されます。</li>
+            <li><code>&lt;em&gt;</code>: 強調したい箇所を示します (Emphasis)。通常、斜体で表示されます。</li>
+        </ul>
+        <p>例：
+            <code>&lt;p&gt;これは &lt;strong&gt;重要&lt;/strong&gt; です。そして &lt;em&gt;強調&lt;/em&gt; したい部分です。&lt;/p&gt;</code>
+        </p>
+    </div>
+    <div class="example">
+        <p>この情報は<strong>非常に重要</strong>です。必ず確認してください。</p>
+        <p>この単語は<em>特に強調</em>したい部分です。</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;p&gt;この情報は&lt;strong&gt;非常に重要&lt;/strong&gt;です。必ず確認してください。&lt;/p&gt;
+&lt;p&gt;この単語は&lt;em&gt;特に強調&lt;/em&gt;したい部分です。&lt;/p&gt;</code></pre>
+
+    <h2>コードの表示 - <code>&lt;code&gt;</code>, <code>&lt;pre&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>HTML内にプログラムコードやタグを表示したい場合に使います。</p>
+        <ul>
+            <li><code>&lt;code&gt;</code>: 短いコードの断片（インラインコード）を示します。</li>
+            <li><code>&lt;pre&gt;</code>:
+                整形済みのテキストブロック（複数行のコードなど）を示します。通常、等幅フォントで表示され、スペースや改行がそのまま反映されます。<code>&lt;code&gt;</code>タグと組み合わせて使うことが多いです。
+            </li>
+        </ul>
+        <p>例： <code>&lt;p&gt;HTMLタグは &lt;code&gt;&lt;p&gt;&lt;/code&gt; のように書きます。&lt;/p&gt;</code></p>
+        <p>例： <code>&lt;pre&gt;&lt;code&gt;function hello() { console.log("Hello"); }&lt;/code&gt;&lt;/pre&gt;</code>
+        </p>
+        <p><strong>注意:</strong> HTML内で <code><</code> や <code>></code> をそのまま表示したい場合は、<code>&amp;lt;</code> (より小なり) や
+            <code>&amp;gt;</code> (より大なり) のような文字実体参照を使う必要があります。</p>
+    </div>
+    <div class="example">
+        <p>インラインコード: <code>&lt;div&gt;</code> タグは区分を作るために使います。</p>
+        <p>複数行のコードブロック:</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;サンプル&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;こんにちは&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;p&gt;インラインコード: &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt; タグは区分を作るために使います。&lt;/p&gt;
+
+&lt;p&gt;複数行のコードブロック:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&gt;
+    &amp;lt;title&amp;gt;サンプル&amp;lt;/title&gt;
+&amp;lt;/head&gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;h1&amp;gt;こんにちは&amp;lt;/h1&gt;
+&amp;lt;/body&gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+    <h2>コメント - <code>&lt;!-- --&gt;</code></h2>
+    <div class="tag-explanation">
+        <p>HTMLコード内にメモを残したい場合や、一時的にコードの一部を無効化したい場合にコメントを使います。コメントはブラウザには表示されません。</p>
+        <p>例： <code>&lt;!-- これはコメントです。ブラウザには表示されません。 --&gt;</code></p>
+    </div>
+    <div class="example">
+        <p>下の行にはコメントがありますが、表示されません。</p>
+    </div>
+    <p>コード例:</p>
+    <pre><code>&lt;p&gt;これは表示されるテキストです。&lt;/p&gt;
+&lt;!-- これはコメントです。メモを残すのに便利です。 --&gt;
+&lt;!-- &lt;p&gt;この段落はコメントアウトされているため表示されません。&lt;/p&gt; --&gt;</code></pre>
+
+    <h2>まとめと次のステップ</h2>
+    <p>ここまでで、HTMLの基本的なタグの使い方を学びました。これらのタグを組み合わせることで、簡単なウェブページを作成できます。</p>
+    <ul>
+        <li><strong>練習してみよう:</strong> このファイルを元に、自分で内容を書き換えたり、新しいタグを追加したりしてみましょう。</li>
+        <li><strong>さらに学ぶには:</strong>
+            <ul>
+                <li>他のHTMLタグ（テーブル<code>&lt;table&gt;</code>, フォーム<code>&lt;form&gt;</code>など）も学んでみましょう。</li>
+                <li><strong>CSS (Cascading Style Sheets)</strong>
+                    を学ぶと、色やレイアウトなど、ページの見た目を装飾することができます。HTMLとCSSはセットで使われることが多いです。</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+    <p style="text-align: center; font-size: 0.9em; color: #777;">HTML入門教材サンプル - 終わり</p>
+
+</body>
+
+</html>
