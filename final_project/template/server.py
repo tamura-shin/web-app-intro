@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
+from typing import List, Optional
+
 import sqlite3
 import os
-from typing import List, Optional
 import uvicorn
 
 app = FastAPI()
