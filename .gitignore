@@ -132,3 +132,7 @@ Thumbs.db
 *~
 *.bak
 *.tmp
+
+# SQLite database files
+*.db
+*.sqlite
