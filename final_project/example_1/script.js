@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dataList.innerHTML = ''; // 既存のリストをクリア
             data.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `ID: ${item.id}, 値1: ${item.value_1}, 値2: ${item.value_2 || 'N/A'}`;
+                listItem.innerHTML = `ID: ${item.id} <br> タイトル: ${item.value_1} <br> 本文: ${item.value_2 || 'N/A'}`;
                 dataList.appendChild(listItem);
             });
         } catch (error) {

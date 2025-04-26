@@ -37,14 +37,25 @@ label {
     font-weight: bold;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
+    /* textarea のスタイルを追加 */
     width: calc(100% - 22px);
     /* padding と border を考慮 */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
+    /* padding と border を幅に含める */
 }
+
+textarea {
+    /* textarea の高さを調整 */
+    resize: vertical;
+    /* 垂直方向のリサイズのみ許可 */
+}
+
 
 button {
     background-color: #0056b3;
