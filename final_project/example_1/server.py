@@ -140,6 +140,14 @@ def read_js():
     return PlainTextResponse(content=js_content, status_code=200)
 
 
+@app.get("/favicon.ico")
+def read_favicon():
+    favicon_path = os.path.join(BASE_DIR, "favicon.ico")
+    with open(favicon_path, "rb") as f:
+        favicon_content = f.read()
+    return Response(content=favicon_content, media_type="image/x-icon")
+
+
 if __name__ == "__main__":
     initialize_db()
     uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=True)
