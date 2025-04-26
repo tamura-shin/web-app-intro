@@ -66,6 +66,7 @@ def create_data_item(item: DataBase):
     )
 
 
+# ここから下は書き換えない
 @app.get("/", response_class=HTMLResponse)
 async def read_html():
     html_file_path = os.path.join(BASE_DIR, "client.html")
