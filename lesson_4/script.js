@@ -39,7 +39,7 @@ function playGame(playerChoiceIndex) {
     // あいこ
     // プレイヤーの手(playerChoiceIndex)とコンピューターの手(computerChoiceIndex)が同じ場合
     if (playerChoiceIndex === computerChoiceIndex) {
-        // 結果のテキストにあいこを代入
+        // 結果のテキストにあいこの場合の文章を代入
         resultText = RESULTS.DRAW;
     }
 
