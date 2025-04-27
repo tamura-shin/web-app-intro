@@ -3,49 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>踊るフライドチキン</title>
+    <title>じゃんけんアプリ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>踊るフライドチキン</h1>
-    <p id="date">2025年4月27日（日）</p>
 
-    <p id="intro">昼下がり、商店街をぶらぶらしていたら、揚げ物専門店「クリスピー☆パラダイス」の前で信じられない光景に出くわした。</p>
+    <h1>じゃんけん勝負！</h1>
 
-    <p id="dancing-chicken">
-        ショーケースの中、黄金色に揚がったフライドチキンが、足に見立てた骨でカッ、カッ、カッとリズムを刻みながらタップダンスを踊っている！　小気味よいタップ音に合わせて、衣（ころも）がキラキラ舞い、香ばしい匂いが空気を震わせていた。
-    </p>
+    <div class="choices">
+        <p>あなたの手を選んでね:</p>
+        <button id="btn-rock">✊<span class="sr-only">グー</span></button>
+        <button id="btn-scissors">✌️<span class="sr-only">チョキ</span></button>
+        <button id="btn-paper">🖐️<span class="sr-only">パー</span></button>
+    </div>
 
-    <p id="audience-reaction">
-        通りすがりの人たちは最初ぽかんとしていたけれど、次第にスマホを取り出して撮影大会。店主のおじさんは「今日は特から揚げサービスデーなんだけどなぁ」と呑気にポスターを貼り直していて、どうやら本鳥（？）の存在に気づいていない。
-    </p>
+    <div id="result-area">
+        <p>あなた: <span id="player-hand">---</span></p>
+        <p>コンピューター: <span id="computer-hand">---</span></p>
+        <hr>
+        <p>結果: <span id="result">---</span></p>
+    </div>
 
-    <video src="assets/f-c-d.mp4" controls style="width: 50%;"></video>
+    <script src="script.js" defer></script>
 
-    <p id="narrator-feelings">
-        私はというと、心臓がドラムロール。まばたきするたび「ほんとにチキン？」「いや、チキンが踊るわけない」と理性がせめぎ合い、結果「まあ人生、こういう日もある！」と開き直り、ステップに合わせて指を鳴らした。</p>
-
-    <p id="solo-dance">
-        チキンは私のリズムに呼応するかのようにソロパートに突入。床を跳ねるたび、パプリカと胡椒の粒が舞い、まるでスノードームならぬ"スパイスドーム"。観客から自然とクラップが起こり、気付けば小さな路上ステージが完成していた。
-    </p>
-
-    <p id="finale">
-        ラスト、チキンは高く跳び上がると、フワッと回転して着地。――その瞬間、油断したのか衣がパリッと割れて、中から湯気とともに「ジューッ」という歓声が上がった（ように聞こえた）。観客は大喝采。チキンは深々とお辞儀し、再びショーケースの奥へ。
-    </p>
-
-    <p id="aftermath">
-        幻だったのか現実だったのか。手元には、踊り終えたばかりのチキンレッグ――ではなく、店で買った普通のフライドチキンの紙袋ひとつ。帰宅してかぶりついたら、いつもより軽やかなカリッという音がした。あのステップの余韻かもしれない。
-    </p>
-
-    <p id="lessons-intro">今日学んだこと：</p>
-    <ol>
-        <li>常識の枠は、衣みたいにサクッと外れる。</li>
-        <li>チキンも、日曜の午後くらい踊りたい。</li>
-        <li>驚いた日は、日記にスパイスを足して書くと楽しい。</li>
-    </ol>
-
-    <p id="conclusion">次にあの店へ行くときは、靴底にタップを仕込んでおこう。もし再演が始まったら、即興セッションで共演だ。</p>
 </body>
 
 </html>

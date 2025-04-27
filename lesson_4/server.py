@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Response
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse
 import os
 import uvicorn
 import mimetypes
@@ -26,25 +26,12 @@ def read_css():
     return Response(content=css_content, media_type="text/css")
 
 
-@app.get("/assets/{filename}")
-async def read_asset(filename: str):
-    asset_path = os.path.join(BASE_DIR, "assets", filename)
-
-    # Check if the file exists and is actually a file (not a directory)
-    if not os.path.exists(asset_path) or not os.path.isfile(asset_path):
-        return Response(status_code=404)
-
-    # Guess the MIME type of the file
-    media_type, _ = mimetypes.guess_type(asset_path)
-    if media_type is None:
-        # Default to octet-stream if MIME type cannot be guessed
-        media_type = "application/octet-stream"
-
-    # Read the file content in binary mode
-    with open(asset_path, "rb") as f:
-        content = f.read()
-
-    return Response(content=content, media_type=media_type)
+@app.get("/script.js", response_class=PlainTextResponse)
+def read_js():
+    js_file_path = os.path.join(BASE_DIR, "script.js")
+    with open(js_file_path, "r", encoding="utf-8") as f:
+        js_content = f.read()
+    return PlainTextResponse(content=js_content, status_code=200)
 
 
 if __name__ == "__main__":

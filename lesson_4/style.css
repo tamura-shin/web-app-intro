@@ -1,0 +1,84 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+.choices {
+    margin-bottom: 20px;
+}
+
+.choices button {
+    font-size: 1.5em;
+    /* 絵文字が大きく見えるように */
+    margin: 0 10px;
+    padding: 15px 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.choices button:hover {
+    background-color: #45a049;
+}
+
+.choices button:active {
+    background-color: #3e8e41;
+}
+
+#result-area {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    min-width: 250px;
+    text-align: center;
+}
+
+#result-area p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+#player-hand,
+#computer-hand,
+#result {
+    font-weight: bold;
+    font-size: 1.5em;
+    /* 手の表示を大きく */
+    display: inline-block;
+    /* 手の絵文字が縦にならないように */
+    min-width: 50px;
+    /* 表示幅を確保 */
+    text-align: center;
+}
+
+#result {
+    color: #d32f2f;
+    /* 結果の色を赤に */
+}
+
+/* 画面読み上げソフト用の隠しテキスト */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
