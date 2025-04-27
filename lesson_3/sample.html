@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSSの基本</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        h3 {
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        code.inline-code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            overflow-x: auto;
+            /* 横スクロール可能に */
+        }
+
+        pre code {
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .demo {
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .demo-box {
+            background-color: #e9ecef;
+            border: 1px solid #adb5bd;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        /* --- デモ用スタイル --- */
+        .text-red {
+            color: red;
+        }
+
+        .font-large {
+            font-size: 24px;
+        }
+
+        .font-gothic {
+            font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .line-high {
+            line-height: 2;
+        }
+
+        .text-underline {
+            text-decoration: underline;
+        }
+
+        .bg-lightblue {
+            background-color: lightblue;
+        }
+
+        /* 画像パスはダミーです */
+        /* .bg-image-demo { background-image: url('path/to/your/image.jpg'); height: 100px; border: 1px solid black; } */
+
+        .box-demo {
+            width: 400px;
+            height: 300px;
+            padding: 15px;
+            border: 5px solid orange;
+            margin: 20px;
+            background-color: lightcyan;
+        }
+
+        .box-sizing-demo {
+            box-sizing: border-box;
+            /* この指定があると width/height に padding と border が含まれる */
+        }
+
+        .display-block-demo {
+            display: block;
+            background-color: lightcoral;
+            margin-bottom: 5px;
+        }
+
+        .display-inline-demo {
+            display: inline;
+            background-color: lightgreen;
+            margin: 0 5px;
+            width: 100px;
+            height: 50px;
+            /* width/height は効きにくい */
+        }
+
+        .display-inline-block-demo {
+            display: inline-block;
+            background-color: lightskyblue;
+            margin: 0 5px;
+            width: 100px;
+            /* width/height が効く */
+        }
+
+        .float-left-demo img {
+            float: left;
+            margin-right: 10px;
+            width: 80px;
+            height: auto;
+        }
+
+        .clear-fix::after {
+            /* float解除の簡単な方法 */
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 図全体を囲むコンテナ */
+        .box-model-diagram {
+            width: 300px;
+            /* 図の全体の幅を適宜調整 */
+            margin: 20px auto;
+            /* 中央寄せ */
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        /* Margin（マージン）エリア */
+        .margin-area {
+            background-color: #f0f0f0;
+            /* マージン領域を薄いグレーで示す */
+            padding: 30px;
+            /* このパディングが視覚的なマージンを表す */
+            border: 1px dashed #ccc;
+            /* マージンの外側の境界を点線で示す */
+            position: relative;
+            /* ラベル配置のため */
+        }
+
+        .margin-area::before {
+            content: "Margin";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        /* Border（ボーダー）エリア */
+        .border-area {
+            border: 10px solid orange;
+            /* ボーダー（枠線） */
+            background-color: white;
+            /* ボーダーの内側は一旦白に */
+            padding: 5px;
+            /* ボーダーとパディングの間に少し隙間を作る（視覚的な補助） */
+            position: relative;
+            /* ラベル配置のため */
+        }
+
+        .border-area::before {
+            content: "Border";
+            position: absolute;
+            top: -25px;
+            /* マージンエリア内に配置 */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f0f0f0;
+            /* 背景色と同じにして線を隠す */
+            padding: 0 5px;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+
+        /* Padding（パディング）エリア */
+        .padding-area {
+            background-color: lightcyan;
+            /* パディング領域を水色で示す */
+            padding: 20px;
+            /* パディング */
+            position: relative;
+            /* ラベル配置のため */
+        }
+
+        .padding-area::before {
+            content: "Padding";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 0.8em;
+            color: #333;
+        }
+
+        /* Content（コンテンツ）エリア */
+        .content-area {
+            background-color: lightblue;
+            /* コンテンツ領域を少し濃い水色で示す */
+            height: 100px;
+            /* コンテンツの高さ */
+            width: 100%;
+            /* 親要素(padding-area)の幅に合わせる */
+            box-sizing: border-box;
+            /* widthにpadding/borderを含めない */
+            display: flex;
+            /* 中央揃えのため */
+            justify-content: center;
+            /* 水平中央揃え */
+            align-items: center;
+            /* 垂直中央揃え */
+            font-weight: bold;
+            color: #111;
+            position: relative;
+        }
+
+        .content-area::before {
+            content: "Content";
+            position: absolute;
+            top: 5px;
+            /* paddingエリア内に配置 */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: lightcyan;
+            /* 背景色と同じにして線を隠す */
+            padding: 0 5px;
+            font-size: 0.8em;
+            color: #333;
+        }
+
+        /* --- デモ用スタイルここまで --- */
+    </style>
+</head>
+
+<body>
+
+    <h1>CSSの基本</h1>
+
+    <section>
+        <h2>2. CSSのキホン</h2>
+
+        <h3>CSSをどこに書く？</h3>
+        <p>CSSをHTMLに適用するには、主に3つの方法があります。</p>
+        <ol>
+            <li>
+                <strong>外部スタイルシート（推奨）:</strong><br>
+                拡張子が <code class="inline-code">.css</code> のファイルにCSSを書き、HTMLの <code
+                    class="inline-code">&lt;head&gt;</code> タグ内で <code class="inline-code">&lt;link&gt;</code>
+                タグを使って読み込みます。管理がしやすく、複数のHTMLファイルで同じスタイルを使い回せるため、最も一般的な方法です。<br>
+                <pre><code>&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+            </li>
+            <li>
+                <strong>内部スタイルシート:</strong><br>
+                HTMLファイルの <code class="inline-code">&lt;head&gt;</code> タグ内に <code
+                    class="inline-code">&lt;style&gt;</code> タグを書き、その中にCSSを記述します。特定のHTMLファイルだけに適用したい場合に便利です。
+                <pre><code>&lt;head&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+            </li>
+            <li>
+                <strong>インラインスタイル:</strong><br>
+                スタイルを適用したいHTMLタグの <code class="inline-code">style</code>
+                属性に直接CSSを記述します。手軽ですが、修正が大変になったり、コードが見にくくなるため、あまり推奨されません。
+                <pre><code>&lt;p style="color: green; font-size: 18px;"&gt;この文章はインラインスタイルで装飾されています。&lt;/p&gt;</code></pre>
+            </li>
+        </ol>
+        <p>このサイトでは、説明のために内部スタイルシートやインラインスタイルも使いますが、実際のWeb制作では<strong>外部スタイルシート</strong>を使うことを基本と考えましょう。</p>
+
+        <h3>CSSの基本的な書き方（構文）</h3>
+        <p>CSSは、「どの要素（セレクタ）の」「何を（プロパティ）」「どうする（値）」を指定するルールで記述します。</p>
+        <pre><code>セレクタ {
+    プロパティ: 値;
+    /* 他のプロパティ: 他の値; */
+}</code></pre>
+        <ul>
+            <li><strong>セレクタ (Selector):</strong> スタイルを適用したいHTML要素を指定します。（例: <code class="inline-code">h1</code>, <code
+                    class="inline-code">.classname</code>, <code class="inline-code">#idname</code>）</li>
+            <li><strong>プロパティ (Property):</strong> 変更したいスタイルの種類を指定します。（例: <code class="inline-code">color</code>, <code
+                    class="inline-code">font-size</code>, <code class="inline-code">background-color</code>）</li>
+            <li><strong>値 (Value):</strong> プロパティに設定する具体的な値を指定します。（例: <code class="inline-code">red</code>, <code
+                    class="inline-code">16px</code>, <code class="inline-code">#ffffff</code>）</li>
+            <li>各「プロパティ: 値;」のセットを<strong>宣言 (Declaration)</strong> と呼びます。</li>
+            <li>複数の宣言はセミコロン (<code class="inline-code">;</code>) で区切ります。</li>
+            <li>宣言全体を波括弧 (<code class="inline-code">{}</code>) で囲みます。</li>
+        </ul>
+        <p>コメントは <code class="inline-code">/* コメント文 */</code> のように書きます。</p>
+
+        <h3>簡単な例を書いてみよう</h3>
+        <p>例えば、ページ内の全ての <code class="inline-code">&lt;h1&gt;</code> タグの文字色を赤にするには、以下のように書きます。</p>
+        <pre><code>h1 {
+    color: red;
+}</code></pre>
+        <div class="demo">
+            <strong>実行結果デモ:</strong>
+            <h1 class="text-red">この見出しは赤色になります</h1>
+            <p>これは通常のテキストです。</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. セレクタ：どの要素の見た目を変える？</h2>
+        <p>CSSでスタイルを適用する対象を指定するのが「セレクタ」です。よく使う基本的なセレクタを紹介します。</p>
+
+        <h3>一番よく使うセレクタ</h3>
+        <ul>
+            <li>
+                <strong>要素セレクタ (Element Selector):</strong><br>
+                HTMLタグ名をそのまま指定します。そのタグ全てにスタイルが適用されます。
+                <pre><code>/* 全ての p タグの文字サイズを 16px に */
+p {
+    font-size: 16px;
+}</code></pre>
+            </li>
+            <li>
+                <strong>クラスセレクタ (Class Selector):</strong><br>
+                HTML要素に <code class="inline-code">class="クラス名"</code> を追加し、CSSではドット (<code class="inline-code">.</code>)
+                に続けてクラス名を指定します。同じクラス名を持つ複数の要素に同じスタイルを適用でき、使い回しに便利です。
+                <pre><code class="language-html">&lt;!-- HTML側 --&gt;
+&lt;p class="highlight"&gt;この部分を強調します。&lt;/p&gt;
+&lt;div class="highlight"&gt;このボックスも強調します。&lt;/div&gt;
+
+&lt;!-- CSS側 --&gt;
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}</code></pre>
+                <div class="demo">
+                    <strong>実行結果デモ:</strong>
+                    <p class="highlight">この部分を強調します。</p>
+                    <div class="highlight demo-box"
+                        style="width: auto; height: auto; background-color: yellow; font-weight: bold;">このボックスも強調します。
+                    </div>
+                </div>
+            </li>
+            <li>
+                <strong>IDセレクタ (ID Selector):</strong><br>
+                HTML要素に <code class="inline-code">id="ID名"</code> を追加し、CSSではシャープ (<code class="inline-code">#</code>)
+                に続けてID名を指定します。IDはページ内で<strong>一意（ユニーク）</strong>でなければならず、特定の要素一つだけにスタイルを適用したい場合に使います。
+                <pre><code class="language-html">&lt;!-- HTML側 --&gt;
+&lt;div id="header"&gt;サイトのヘッダー部分&lt;/div&gt;
+
+&lt;!-- CSS側 --&gt;
+#header {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}</code></pre>
+                <div class="demo">
+                    <strong>実行結果デモ:</strong>
+                    <div id="header" style="padding: 20px; background-color: #333; color: white;">サイトのヘッダー部分</div>
+                </div>
+            </li>
+        </ul>
+
+        <h3>特定の状態の要素にスタイルを適用する（擬似クラス）</h3>
+        <p>要素の特定の状態（例: マウスが乗っている、リンクがクリックされた）に応じてスタイルを変えたい場合に「擬似クラス」を使います。コロン (<code class="inline-code">:</code>)
+            の後にキーワードを続けます。</p>
+        <ul>
+            <li>
+                <code class="inline-code">:hover</code> : マウスカーソルが要素の上に乗っている間のスタイルを指定します。
+                <pre><code>a:hover {
+    color: orange; /* リンクにマウスを乗せるとオレンジ色に */
+    text-decoration: none; /* 下線を消す */
+}</code></pre>
+                <div class="demo">
+                    <strong>実行結果デモ:</strong> (リンクにマウスを乗せてみてください) <br>
+                    <a href="#">これはサンプルリンクです</a>
+                    <style>
+                        a:hover {
+                            color: orange;
+                            text-decoration: none;
+                        }
+                    </style>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. よく使うプロパティ：見た目を具体的に変えよう</h2>
+        <p>Webページでよく使われるCSSプロパティを見ていきましょう。</p>
+
+        <h3>文字のスタイル</h3>
+        <div class="demo">
+            <p class="text-red">これは <code class="inline-code">color: red;</code> で赤色にした文字です。</p>
+            <p class="font-large">これは <code class="inline-code">font-size: 24px;</code> で大きくした文字です。</p>
+            <p class="font-gothic">これは <code class="inline-code">font-family</code> でゴシック体にした文字です。</p>
+            <p class="font-bold">これは <code class="inline-code">font-weight: bold;</code> で太字にした文字です。</p>
+            <p class="text-center">これは <code class="inline-code">text-align: center;</code> で中央揃えにした文字です。</p>
+            <p class="line-high">これは <code class="inline-code">line-height: 2;</code>
+                で行間を広げた文章です。テキストが複数行にわたる場合、行の高さ（行間）を調整することで読みやすさが向上します。</p>
+            <p>これは <a href="#" class="text-underline">下線付き (<code
+                        class="inline-code">text-decoration: underline;</code>)</a> のリンクです。</p>
+        </div>
+        <pre><code>/* CSSの例 */
+.text-red { color: red; }
+.font-large { font-size: 24px; }
+.font-gothic { font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif; } /* フォントは複数指定が一般的 */
+.font-bold { font-weight: bold; }
+.text-center { text-align: center; }
+.line-high { line-height: 2; }
+.text-underline { text-decoration: underline; }</code></pre>
+
+        <h3>背景のスタイル</h3>
+        <div class="demo">
+            <div class="bg-lightblue demo-box" style="width: auto; height: auto;">
+                これは <code class="inline-code">background-color: lightblue;</code> で背景色を水色にしたボックスです。
+            </div>
+        </div>
+        <pre><code>/* CSSの例 */
+.bg-lightblue {
+    background-color: lightblue;
+}
+
+/* 背景画像を指定する場合 (画像パスは環境に合わせてください) */
+.bg-image-demo {
+    background-image: url('path/to/your/image.jpg');
+    background-size: cover; /* 画像をボックスに合わせて表示 */
+    background-position: center; /* 画像を中央に配置 */
+    height: 100px; /* 高さを指定しないと表示されない場合がある */
+    border: 1px solid black;
+    color: white; /* 文字が見えるように */
+    text-shadow: 1px 1px 2px black; /* 文字に影をつける */
+}</code></pre>
+
+        <h3>ボックスモデル：要素の大きさ、余白、枠線</h3>
+        <p>HTMLの要素は、それぞれが四角い「箱（ボックス）」として扱われます。この箱は以下の要素で構成されています。</p>
+        <ul>
+            <li><strong>Content (コンテンツ):</strong> テキストや画像が表示される中心部分。 <code class="inline-code">width</code> と <code
+                    class="inline-code">height</code> でサイズを指定します。</li>
+            <li><strong>Padding (パディング):</strong> コンテンツと枠線の間の内側の余白。</li>
+            <li><strong>Border (ボーダー):</strong> パディングの外側にある枠線。太さ、種類（実線、点線など）、色を指定できます。</li>
+            <li><strong>Margin (マージン):</strong> 枠線の外側にある余白。他の要素との距離を調整します。</li>
+        </ul>
+        <div class="box-model-diagram">
+            <div class="margin-area">
+                <div class="border-area">
+                    <div class="padding-area">
+                        <div class="content-area">
+                            実際のコンテンツ<br>(テキストや画像など)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="demo">
+            <strong>実行結果デモ:</strong>
+            <div class="box-demo">
+                このボックスは以下のスタイルが適用されています:<br>
+                width: 400px<br>
+                height: 300px<br>
+                padding: 15px<br>
+                border: 5px solid orange<br>
+                margin: 20px<br>
+                background-color: lightcyan;
+            </div>
+            <div class="box-demo box-sizing-demo">
+                これは <code class="inline-code">box-sizing: border-box;</code> を適用したボックスです。width/height (400x300) に
+                padding(15px) と border(5px) が<strong>含まれる</strong>ため、全体のサイズは 400x300 のままです。レイアウトが計算しやすくなります。
+            </div>
+        </div>
+        <pre><code>/* CSSの例 */
+.box-demo {
+    width: 200px;       /* 内容領域の幅 */
+    height: 100px;      /* 内容領域の高さ */
+    padding: 15px;      /* 内側の余白 (上下左右 15px) */
+    border: 5px solid orange; /* 枠線 (太さ 種類 色) */
+    margin: 20px;       /* 外側の余白 (上下左右 20px) */
+    background-color: lightcyan;
+}
+
+/* padding, margin は上下左右個別に指定も可能 */
+.example {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    /* ショートハンド: 上 右 下 左 の順 */
+    padding: 10px 20px 10px 20px;
+    /* ショートハンド: 上下 左右 の順 */
+    padding: 10px 20px;
+
+    margin-top: 5px;
+    /* (marginもpaddingと同様の指定が可能) */
+}
+
+/* レイアウト計算を簡単にする box-sizing */
+.box-sizing-demo {
+    box-sizing: border-box;
+}</code></pre>
+        <p><code class="inline-code">box-sizing: border-box;</code> は、<code class="inline-code">width</code> や <code
+                class="inline-code">height</code> に <code class="inline-code">padding</code> と <code
+                class="inline-code">border</code> のサイズを含めて計算するようにする指定です。多くの開発者がデフォルトで全ての要素に適用しています。</p>
+        <pre><code>/* よく使われるリセットCSSの一部 */
+* { /* 全ての要素に適用 */
+    box-sizing: border-box;
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>5. レイアウトの基本</h2>
+        <p>要素をページ上にどのように配置するか、基本的な方法を見てみましょう。</p>
+
+        <h3>要素の表示形式 (<code class="inline-code">display</code> プロパティ)</h3>
+        <p>要素がどのように表示され、他の要素とどう並ぶかを決める重要なプロパティです。</p>
+        <ul>
+            <li><strong><code class="inline-code">display: block;</code></strong>
+                <ul>
+                    <li>要素は横幅いっぱいに広がり、前後に改行が入ります。</li>
+                    <li><code class="inline-code">width</code>, <code class="inline-code">height</code>, <code
+                            class="inline-code">margin</code>, <code class="inline-code">padding</code> が指定できます。</li>
+                    <li>例: <code class="inline-code">&lt;h1&gt;</code>, <code class="inline-code">&lt;p&gt;</code>,
+                        <code class="inline-code">&lt;div&gt;</code> など
+                    </li>
+                </ul>
+                <div class="demo">
+                    <span class="display-block-demo">これは display: block; の要素です (元はspan)。</span>
+                    <span class="display-block-demo">これも display: block; の要素です。改行されます。</span>
+                </div>
+            </li>
+            <li><strong><code class="inline-code">display: inline;</code></strong>
+                <ul>
+                    <li>要素はテキストの一部のように扱われ、改行されずに横に並びます。</li>
+                    <li><code class="inline-code">width</code> や <code class="inline-code">height</code>
+                        を指定しても、基本的には効きません。上下の <code class="inline-code">margin</code> も効きにくいです。</li>
+                    <li>例: <code class="inline-code">&lt;a&gt;</code>, <code class="inline-code">&lt;span&gt;</code>,
+                        <code class="inline-code">&lt;strong&gt;</code> など
+                    </li>
+                </ul>
+                <div class="demo">
+                    <div class="display-inline-demo">これは display: inline; の要素です(元はdiv)。</div>
+                    <div class="display-inline-demo">これも display: inline; の要素です。横に並びます。width/heightは効きません。</div>
+                    テキストが続きます。
+                </div>
+            </li>
+            <li><strong><code class="inline-code">display: inline-block;</code></strong>
+                <ul>
+                    <li><code class="inline-code">inline</code> のように横に並びますが、<code class="inline-code">block</code> のように
+                        <code class="inline-code">width</code>, <code class="inline-code">height</code>, <code
+                            class="inline-code">margin</code>, <code class="inline-code">padding</code> を指定できます。
+                    </li>
+                    <li>ボタンや、横並びのカード要素などによく使われます。</li>
+                </ul>
+                <div class="demo">
+                    <div class="display-inline-block-demo">これは inline-block です。</div>
+                    <div class="display-inline-block-demo">これも inline-block。横に並び、サイズ指定も可能です。</div>
+                </div>
+            </li>
+            <li><strong><code class="inline-code">display: none;</code></strong>
+                <ul>
+                    <li>要素を非表示にします。レイアウト上も存在しないものとして扱われます。</li>
+                </ul>
+                <div class="demo">
+                    <p>次の要素は <code class="inline-code">display: none;</code> で非表示になっています。</p>
+                    <p style="display: none; background-color: yellow;">このテキストは表示されません。</p>
+                    <p>非表示要素の後ろのテキストです。</p>
+                </div>
+            </li>
+        </ul>
+        <pre><code>/* CSSの例 */
+.block-element { display: block; }
+.inline-element { display: inline; }
+.inline-block-element { display: inline-block; width: 120px; height: 50px; }
+.hidden-element { display: none; }</code></pre>
+
+        <h3>回り込み (<code class="inline-code">float</code> プロパティ)</h3>
+        <p><code class="inline-code">float</code>
+            は、要素を左または右に寄せて、後続の要素をその周りに回り込ませるために使われます。主に画像とテキストを組み合わせるレイアウトで使われてきました。</p>
+        <ul>
+            <li><code class="inline-code">float: left;</code> : 要素を左に寄せ、後続の要素が右側に回り込む。</li>
+            <li><code class="inline-code">float: right;</code> : 要素を右に寄せ、後続の要素が左側に回り込む。</li>
+            <li><code class="inline-code">clear: both;</code> : <code class="inline-code">float</code>
+                による回り込みを解除します。この指定をした要素は、<code class="inline-code">float</code> された要素の下に表示されます。</li>
+        </ul>
+        <div class="demo float-left-demo clear-fix">
+            <strong>実行結果デモ (<code class="inline-code">float: left;</code>):</strong><br>
+            <img src="https://placehold.jp/150x150.png" alt="Placeholder Image">
+            このテキストは画像の右側に回り込みます。floatプロパティは、このように画像などの要素をテキストの横に配置したい場合によく使われます。テキストが短い場合は問題ありませんが、長くなると画像の高さ以上に回り込みます。回り込みを解除するには
+            clear プロパティを使います。
+        </div>
+        <div style="border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px;">
+            ↑上のデモでは、親要素に <code class="inline-code">.clear-fix</code> というクラスを付け、CSSで回り込み解除を行っています。（clearfixハックと呼ばれる手法の一つ）
+        </div>
+        <pre><code>/* CSSの例 */
+.image-left {
+    float: left;
+    margin-right: 15px; /* 画像の右に余白 */
+}
+
+.text-content {
+    /* floatを使わない要素 */
+}
+
+.footer {
+    clear: both; /* 上のfloatの影響を受けないようにする */
+    border-top: 1px solid gray;
+    padding-top: 10px;
+}
+
+/* 簡単な clearfix ハック */
+.clear-fix::after {
+    content: "";
+    display: table;
+    clear: both;
+}</code></pre>
+        <p><strong>注意:</strong> 現在では、より複雑なレイアウトには <code class="inline-code">float</code> よりも <strong>Flexbox</strong> や
+            <strong>Grid</strong> といった新しいレイアウト手法が推奨されています。しかし、<code class="inline-code">float</code>
+            は基本的なレイアウト技術の一つとして知っておくと良いでしょう。
+        </p>
+
+    </section>
+
+</body>
+
+</html>
