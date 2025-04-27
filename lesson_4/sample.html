@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript基本文法 (初心者向け)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #17a2b8;
+            margin-top: 30px;
+            border-left: 5px solid #17a2b8;
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            /* 横スクロール可能に */
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+
+        strong {
+            color: #d9534f;
+            /* 強調文字の色 */
+        }
+
+        ul {
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .code-comment {
+            color: #6a737d;
+            /* コメントの色 */
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>JavaScript基本文法 (初心者向け解説)</h1>
+
+        <p>JavaScriptは、ウェブサイトに動きをつけたり、ゲームを作ったり、色々なことができる人気のプログラミング言語です。最初は難しく感じるかもしれませんが、基本的なルールから少しずつ覚えていきましょう！</p>
+
+        <h2>1. コンピューターへの「指示」の書き方 (文)</h2>
+        <p>プログラムは、コンピューターに対する「指示」の集まりです。JavaScriptでは、一つ一つの指示を「文 (Statement)」と呼びます。</p>
+        <ul>
+            <li>指示の終わりにはセミコロン <strong>;</strong> をつけるのが基本です。（日本語の「。」のようなもの）</li>
+            <li>なくても動くことも多いですが、指示の区切りをはっきりさせるために、つける習慣をつけるのがおすすめです。</li>
+        </ul>
+        <pre><code class="code-comment">// 例：画面に「こんにちは！」と表示する指示</code>
+<code>console.log("こんにちは！");</code></pre>
+
+        <h2>2. メモを残す方法 (コメント)</h2>
+        <p>コードの中に、人間が読むためのメモを残すことができます。これを「コメント」と呼びます。コンピューターはこの部分を無視するので、プログラムの動きには影響しません。</p>
+        <ul>
+            <li><strong>一行だけのメモ:</strong> <code>//</code> を書くと、その行の終わりまでがコメントになります。</li>
+            <li><strong>複数行にわたるメモ:</strong> <code>/*</code> と <code>*/</code> で囲んだ部分がコメントになります。</li>
+        </ul>
+        <pre><code class="code-comment">// これは一行コメントです。変数messageに自己紹介文を入れています。</code>
+<code><strong>let</strong> message = "はじめまして！";</code>
+
+<code class="code-comment">/*</code>
+<code class="code-comment">  これは複数行コメントです。</code>
+<code class="code-comment">  次の行で、messageの内容を画面に表示します。</code>
+<code class="code-comment">*/</code>
+<code>console.log(message);</code></pre>
+
+        <h2>3. データを入れておく「箱」 (変数)</h2>
+        <p>プログラムでは、数値や文字などのデータを一時的に保存しておく場所が必要です。そのための「名前付きの箱」が「変数 (Variable)」です。</p>
+        <ul>
+            <li><strong><code>let</code> (レット):</strong> 中身を後から変えられる箱を作るときに使います。</li>
+            <li><strong><code>const</code> (コンスト):</strong>
+                一度入れたら中身を変えない（変えられない）箱を作るときに使います。<strong>基本的にはこちらを使うのがおすすめです。</strong></li>
+            <li><code>var</code> (ヴァー): 昔使われていた書き方です。今は <code>let</code> や <code>const</code> を使いましょう。</li>
+        </ul>
+        <pre><code class="code-comment">// let を使った例：年齢を入れる箱 (後で変わる可能性がある)</code>
+<code><strong>let</strong> age = 20;</code>
+<code>age = 21; <span class="code-comment">// 中身を21に変える</span></code>
+
+<code class="code-comment">// const を使った例：名前を入れる箱 (基本的に変わらない)</code>
+<code><strong>const</strong> name = "田中";</code>
+<code><span class="code-comment">// name = "鈴木"; // エラーになります！constの箱の中身は変えられません。</span></code>
+
+<code>console.log(name); <span class="code-comment">// "田中" と表示される</span></code>
+<code>console.log(age);  <span class="code-comment">// 21 と表示される</span></code></pre>
+
+        <h2>4. データの種類 (データ型)</h2>
+        <p>変数に入れるデータには、いくつかの種類があります。よく使うものを覚えましょう。</p>
+        <ul>
+            <li><strong>数値 (Number):</strong> <code>100</code> や <code>3.14</code> のような数字。計算に使います。</li>
+            <li><strong>文字列 (String):</strong> <code>"こんにちは"</code> や <code>'山田'</code> のような文字や文章。<code>"</code> または
+                <code>'</code> で囲みます。</li>
+            <li><strong>真偽値 (Boolean):</strong> <code>true</code> (正しい) か <code>false</code> (間違い)
+                のどちらかを表す値。条件分岐（もし〜なら）などで使います。</li>
+            <li><strong>オブジェクト (Object):</strong> 関連するデータをまとめて管理するのに使います。 <code>{ キー: 値 }</code>
+                のように書きます。（少し難しいので、最初はこういうものがある、くらいでOKです）</li>
+            <li><strong>配列 (Array):</strong> いくつかのデータを順番に並べてリストにしたもの。 <code>[値1, 値2]</code> のように書きます。（これもオブジェクトの一種です）
+            </li>
+        </ul>
+        <pre><code><strong>let</strong> score = 100;                <span class="code-comment">// 数値</span></code>
+<code><strong>let</strong> greeting = "おはよう";      <span class="code-comment">// 文字列</span></code>
+<code><strong>let</strong> isMember = true;            <span class="code-comment">// 真偽値 (true = 会員である)</span></code>
+<code><strong>let</strong> user = { name: "佐藤", age: 30 }; <span class="code-comment">// オブジェクト</span></code>
+<code><strong>let</strong> colors = ["赤", "青", "黄"];    <span class="code-comment">// 配列</span></code></pre>
+
+        <h2>5. 計算や比較をする記号 (演算子)</h2>
+        <p>データを使って計算したり、比べたりするための記号です。</p>
+        <h3>算術演算子</h3>
+        <ul>
+            <li><code>+</code> (足し算), <code>-</code> (引き算), <code>*</code> (掛け算), <code>/</code> (割り算)</li>
+        </ul>
+        <h3>代入演算子</h3>
+        <ul>
+            <li><code>=</code> (右の値を左の変数に入れる)</li>
+        </ul>
+        <h3>比較演算子 (結果は true か false になります)</h3>
+        <ul>
+            <li><strong><code>===</code> (左右の値と種類が同じか？ ← これを使いましょう！)</strong></li>
+            <li><strong><code>!==</code> (左右の値か種類が違うか？ ← これを使いましょう！)</strong></li>
+            <li><code>></code> (左が大きい), <code><</code> (右が大きい)</li>
+            <li><code>>=</code> (左が大きいか等しい), <code><=</code> (右が大きいか等しい)</li>
+        </ul>
+        <h3>論理演算子 (条件を組み合わせる)</h3>
+        <ul>
+            <li><code>&&</code> (AND: かつ)</li>
+            <li><code>||</code> (OR: または)</li>
+            <li><code>!</code> (NOT: ではない)</li>
+        </ul>
+        <pre><code><strong>let</strong> price = 100;</code>
+<code><strong>let</strong> tax = 1.1;</code>
+<code><strong>let</strong> totalPrice = price * tax; <span class="code-comment">// 掛け算 (110 になる)</span></code>
+
+<code><strong>let</strong> point = 85;</code>
+<code><strong>let</strong> isPass = (point >= 60); <span class="code-comment">// 比較 (pointが60以上ならtrue)</span></code>
+
+<code>console.log(totalPrice);  <span class="code-comment">// 110 が表示される</span></code>
+<code>console.log(isPass);      <span class="code-comment">// true が表示される</span></code></pre>
+
+        <h2>6. 条件によって動きを変える (if文)</h2>
+        <p>「もし〜だったら、Aをする。そうでなければ、Bをする」というように、条件によって処理を変えたいときに使います。</p>
+        <pre><code><strong>let</strong> hour = 14; <span class="code-comment">// 今の時刻 (14時)</span></code>
+
+<code><strong>if</strong> (hour < 12) {</code>
+<code>  console.log("午前中です");</code>
+<code>} <strong>else if</strong> (hour < 18) {</code>
+<code>  console.log("午後です"); <span class="code-comment">// この条件に合うので、これが表示される</span></code>
+<code>} <strong>else</strong> {</code>
+<code>  console.log("夜です");</code>
+<code>}</code></pre>
+
+        <h2>7. 同じことを繰り返す (ループ)</h2>
+        <p>同じような処理を何度も繰り返したいときに使います。<strong><code>for</code>ループ</strong>は決まった回数繰り返すときによく使います。</p>
+        <pre><code class="code-comment">// 0から4まで、5回繰り返す</code>
+<code><strong>for</strong> (<strong>let</strong> i = 0; i < 5; i++) {</code>
+<code>  console.log("現在 " + i + " 回目です");</code>
+<code>}</code></pre>
+
+        <h2>8. 処理をまとめた「道具」 (関数)</h2>
+        <p>一連の処理に名前をつけて、何度も呼び出して使えるようにしたものです。「関数 (Function)」と呼びます。同じコードを何度も書かなくて済むので便利です。</p>
+        <pre><code class="code-comment">// 「挨拶する」という処理をまとめた関数</code>
+<code><strong>function</strong> sayHello(name) {</code>
+<code>  console.log("こんにちは、" + name + "さん！");</code>
+<code>}</code>
+
+<code class="code-comment">// 関数を使う（呼び出す）</code>
+<code>sayHello("鈴木"); <span class="code-comment">// "こんにちは、鈴木さん！" と表示される</span></code>
+<code>sayHello("加藤"); <span class="code-comment">// "こんにちは、加藤さん！" と表示される</span></code></pre>
+
+        <h2>まとめ</h2>
+        <p>まずはこれらの基本的なルールを、実際にコードを書いて試してみるのが一番です。ブラウザの「開発者ツール」や、Node.jsという環境、オンラインのJavaScript実行環境などで手軽に試せます。</p>
+        <p>最初はエラーが出たり、うまくいかなかったりするかもしれませんが、少しずつ慣れていくので安心してください。楽しんで学ぶことが大切です！</p>
+    </div>
+</body>
+
+</html>
