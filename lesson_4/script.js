@@ -35,21 +35,22 @@ function playGame(playerChoiceIndex) {
 
     // 勝敗判定
     let resultText = '';
+
     // あいこ
+    // プレイヤーの手(playerChoiceIndex)とコンピューターの手(computerChoiceIndex)が同じ場合
     if (playerChoiceIndex === computerChoiceIndex) {
+        // 結果のテキストにあいこを代入
         resultText = RESULTS.DRAW;
-        // プレイヤーの勝ちパターン
-    } else if (
-        (playerChoiceIndex === 0 && computerChoiceIndex === 1) || // グー vs チョキ
-        (playerChoiceIndex === 1 && computerChoiceIndex === 2) || // チョキ vs パー
-        (playerChoiceIndex === 2 && computerChoiceIndex === 0)    // パー vs グー
-    ) {
-        resultText = RESULTS.WIN;
-        // プレイヤーの負けパターン
-    } else {
-        resultText = RESULTS.LOSE;
     }
 
+    // ここから先を実装してください
+    // プレイヤーが勝つ場合と負けるが必要そう・・・
+    // プレイヤーが勝つ場合の文章はRESULTS.WIN
+    // プレイヤーが負ける場合の文章はRESULTS.LOSE
+
+
+
+    // ここまで
     // 結果を表示
     resultElement.textContent = resultText;
 }
