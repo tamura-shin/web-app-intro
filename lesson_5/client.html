@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>じゃんけんアプリ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>じゃんけん勝負！</h1>
+
+    <div class="choices">
+        <p>あなたの手を選んでね:</p>
+        <button id="btn-rock">✊<span class="sr-only">グー</span></button>
+        <button id="btn-scissors">✌️<span class="sr-only">チョキ</span></button>
+        <button id="btn-paper">🖐️<span class="sr-only">パー</span></button>
+    </div>
+
+    <div id="result-area">
+        <p>あなた: <span id="player-hand">---</span></p>
+        <p>コンピューター: <span id="computer-hand">---</span></p>
+        <hr>
+        <p>結果: <span id="result">---</span></p>
+    </div>
+
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>

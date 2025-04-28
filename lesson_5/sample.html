@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript基本文法</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #17a2b8;
+            margin-top: 30px;
+            border-left: 5px solid #17a2b8;
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        pre {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            /* 横スクロール可能に */
+            white-space: pre-wrap;
+            /* 結果表示エリアで改行を保持 */
+            word-wrap: break-word;
+            /* 結果表示エリアで長い行を折り返す */
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+
+        strong {
+            color: #d9534f;
+            /* 強調文字の色 */
+        }
+
+        ul {
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .code-comment {
+            color: #6a737d;
+            /* コメントの色 */
+            font-style: italic;
+        }
+
+        /* --- ここからインタラクティブ機能用のCSS --- */
+        .interactive-code-block {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            overflow: hidden;
+            /* 子要素のはみ出しを防ぐ */
+        }
+
+        .code-editor {
+            display: block;
+            width: 100%;
+            min-height: 80px;
+            /* 最低限の高さを確保 */
+            padding: 10px;
+            border: none;
+            /* 上下のボーダーは親に任せる */
+            border-bottom: 1px solid #dee2e6;
+            /* 下に区切り線 */
+            border-radius: 0;
+            /* 親の角丸に合わせる */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            resize: vertical;
+            /* 縦方向のリサイズのみ許可 */
+            box-sizing: border-box;
+            /* paddingを含めてwidth 100%にする */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            /* ボタンを右寄せ */
+            align-items: center;
+            padding: 8px 10px;
+            background-color: #f8f9fa;
+            /* 背景色 */
+        }
+
+        .run-button {
+            padding: 5px 15px;
+            background-color: #28a745;
+            /* 実行ボタンの色 */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .run-button:hover {
+            background-color: #218838;
+        }
+
+        .output-area {
+            background-color: #e9ecef;
+            /* preと同じ背景色 */
+            padding: 10px 15px;
+            margin: 0;
+            /* preのデフォルトマージンをリセット */
+            border-radius: 0;
+            /* 親の角丸に合わせる */
+            min-height: 30px;
+            /* 結果がない場合もある程度の高さを確保 */
+            font-size: 0.9em;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* --- ここまでインタラクティブ機能用のCSS --- */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>JavaScript基本文法</h1>
+
+        <p>JavaScriptは、ウェブサイトに動きをつけたり、ゲームを作ったり、色々なことができる人気のプログラミング言語です。最初は難しく感じるかもしれませんが、基本的なルールから少しずつ覚えていきましょう！下のコード例は直接編集して「実行」ボタンを押すと、その場で結果を確認できます。
+        </p>
+
+        <h2>1. コンピューターへの「指示」の書き方 (文)</h2>
+        <p>プログラムは、コンピューターに対する「指示」の集まりです。JavaScriptでは、一つ一つの指示を「文 (Statement)」と呼びます。</p>
+        <ul>
+            <li>指示の終わりにはセミコロン <strong>;</strong> をつけるのが基本です。（日本語の「。」のようなもの）</li>
+            <li>なくても動くことも多いですが、指示の区切りをはっきりさせるために、つける習慣をつけるのがおすすめです。</li>
+        </ul>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="3">// 例：画面に「こんにちは！」と表示する指示
+// 下のコードを編集して「実行」ボタンを押してみてください。
+console.log("こんにちは！");
+console.log("編集できます！");</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>2. メモを残す方法 (コメント)</h2>
+        <p>コードの中に、人間が読むためのメモを残すことができます。これを「コメント」と呼びます。コンピューターはこの部分を無視するので、プログラムの動きには影響しません。</p>
+        <ul>
+            <li><strong>一行だけのメモ:</strong> <code>//</code> を書くと、その行の終わりまでがコメントになります。</li>
+            <li><strong>複数行にわたるメモ:</strong> <code>/*</code> と <code>*/</code> で囲んだ部分がコメントになります。</li>
+        </ul>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="8">// これは一行コメントです。変数messageに自己紹介文を入れています。
+let message = "はじめまして！";
+
+/*
+  これは複数行コメントです。
+  次の行で、messageの内容を画面に表示します。
+*/
+console.log(message);
+// コメントを外したり、書き換えたりして試してみましょう。
+// console.log("コメントは実行されないよ");</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>3. データを入れておく「箱」 (変数)</h2>
+        <p>プログラムでは、数値や文字などのデータを一時的に保存しておく場所が必要です。そのための「名前付きの箱」が「変数 (Variable)」です。</p>
+        <ul>
+            <li><strong><code>let</code> (レット):</strong> 中身を後から変えられる箱を作るときに使います。</li>
+            <li><strong><code>const</code> (コンスト):</strong>
+                一度入れたら中身を変えない（変えられない）箱を作るときに使います。<strong>基本的にはこちらを使うのがおすすめです。</strong></li>
+            <li><code>var</code> (ヴァー): 昔使われていた書き方です。今は <code>let</code> や <code>const</code> を使いましょう。</li>
+        </ul>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="10">// let を使った例：年齢を入れる箱 (後で変わる可能性がある)
+let age = 20;
+console.log("最初の年齢:", age);
+age = 21; // 中身を21に変える
+console.log("新しい年齢:", age);
+
+// const を使った例：名前を入れる箱 (基本的に変わらない)
+const name = "田中";
+console.log("名前:", name);
+// ↓のコメントを外すとエラーになります！試してみてください。
+// name = "鈴木"; // エラーになります！constの箱の中身は変えられません。
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>4. データの種類 (データ型)</h2>
+        <p>変数に入れるデータには、いくつかの種類があります。よく使うものを覚えましょう。</p>
+        <ul>
+            <li><strong>数値 (Number):</strong> <code>100</code> や <code>3.14</code> のような数字。計算に使います。</li>
+            <li><strong>文字列 (String):</strong> <code>"こんにちは"</code> や <code>'山田'</code> のような文字や文章。<code>"</code> または
+                <code>'</code> で囲みます。
+            </li>
+            <li><strong>真偽値 (Boolean):</strong> <code>true</code> (正しい) か <code>false</code> (間違い)
+                のどちらかを表す値。条件分岐（もし〜なら）などで使います。</li>
+            <li><strong>オブジェクト (Object):</strong> 関連するデータをまとめて管理するのに使います。 <code>{ キー: 値 }</code> のように書きます。</li>
+            <li><strong>配列 (Array):</strong> いくつかのデータを順番に並べてリストにしたもの。 <code>[値1, 値2]</code> のように書きます。（これもオブジェクトの一種です）
+            </li>
+        </ul>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="7">let score = 100;             // 数値
+let greeting = "おはよう";     // 文字列
+let isMember = true;           // 真偽値 (true = 会員である)
+let user = { name: "佐藤", age: 30 }; // オブジェクト
+let colors = ["赤", "青", "黄"];   // 配列
+
+console.log("点数:", score, typeof score);
+console.log("挨拶:", greeting, typeof greeting);
+console.log("会員か:", isMember, typeof isMember);
+console.log("ユーザー情報:", user, typeof user);
+console.log("色:", colors, typeof colors); // 配列も object と表示されます
+console.log("配列かどうか:", Array.isArray(colors)); // 配列か判定するなら Array.isArray() を使います
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>5. 計算や比較をする記号 (演算子)</h2>
+        <p>データを使って計算したり、比べたりするための記号です。</p>
+        <h3>算術演算子</h3>
+        <ul>
+            <li><code>+</code> (足し算), <code>-</code> (引き算), <code>*</code> (掛け算), <code>/</code> (割り算)</li>
+            <li><code>%</code> (剰余: 割り算の余り), <code>**</code> (べき乗)</li>
+        </ul>
+        <h3>代入演算子</h3>
+        <ul>
+            <li><code>=</code> (右の値を左の変数に入れる)</li>
+            <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code> (例: <code>x += 5</code> は
+                <code>x = x + 5</code> と同じ)
+            </li>
+        </ul>
+        <h3>比較演算子 (結果は true か false になります)</h3>
+        <ul>
+            <li><strong><code>===</code> (左右の値と種類が同じか？ ← これを使いましょう！)</strong></li>
+            <li><strong><code>!==</code> (左右の値か種類が違うか？ ← これを使いましょう！)</strong></li>
+            <li><code>></code> (左が大きい), <code><</code> (右が大きい)</li>
+            <li><code>>=</code> (左が大きいか等しい), <code><=</code> (右が大きいか等しい)</li>
+            <li><code>==</code>, <code>!=</code> (種類が違っても、変換して比較する。<strong>混乱しやすいので ===, !== を推奨</strong>)</li>
+        </ul>
+        <h3>論理演算子 (条件を組み合わせる)</h3>
+        <ul>
+            <li><code>&&</code> (AND: かつ)</li>
+            <li><code>||</code> (OR: または)</li>
+            <li><code>!</code> (NOT: ではない)</li>
+        </ul>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="12">let price = 100;
+let taxRate = 0.1; // 税率 10%
+let totalPrice = price * (1 + taxRate); // 税込み価格
+console.log("合計金額:", totalPrice);
+
+let point = 85;
+let attendance = 90; // 出席率(%)
+// 60点以上 かつ 出席率80%以上 で合格
+let isPass = (point >= 60) && (attendance >= 80);
+console.log("合格か:", isPass);
+
+let a = 10;
+let b = "10";
+console.log("a === b:", a === b); // 型が違うので false (推奨)
+console.log("a == b:", a == b);   // 型を変換して比較するので true (非推奨)
+
+let count = 5;
+count += 3; // count = count + 3 と同じ
+console.log("カウント:", count);
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>6. 条件によって動きを変える (if文)</h2>
+        <p>「もし〜だったら、Aをする。そうでなければ、Bをする」というように、条件によって処理を変えたいときに使います。</p>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="10">let hour = 14; // 今の時刻 (0〜23)
+// hour の値を変えて実行してみましょう (例: 8, 20 など)
+
+if (hour < 6) {
+  console.log("深夜です");
+} else if (hour < 12) {
+  console.log("午前中です");
+} else if (hour < 18) {
+  console.log("午後です");
+} else {
+  console.log("夜です");
+}
+
+console.log("現在の設定時刻:", hour);
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>7. 同じことを繰り返す (ループ)</h2>
+        <p>同じような処理を何度も繰り返したいときに使います。<strong><code>for</code>ループ</strong>は決まった回数繰り返すときによく使います。</p>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="7">// 0から4まで、5回繰り返す
+console.log("ループ開始！");
+for (let i = 0; i < 5; i++) {
+  console.log("現在 " + i + " 回目です");
+  // i の値が 0, 1, 2, 3, 4 と変化する
+}
+console.log("ループ終了！");
+// i < 5 の条件を変えると繰り返す回数が変わります
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+        <h2>8. 処理をまとめた「道具」 (関数)</h2>
+        <p>一連の処理に名前をつけて、何度も呼び出して使えるようにしたものです。「関数 (Function)」と呼びます。同じコードを何度も書かなくて済むので便利です。</p>
+
+        <div class="interactive-code-block">
+            <textarea class="code-editor" rows="12">// 「挨拶する」という処理をまとめた関数
+// name は関数の中で使うための変数（引数）
+function sayHello(name) {
+  let greeting = "こんにちは、" + name + "さん！";
+  console.log(greeting);
+  return greeting; // 挨拶文を返す（呼び出し元で使える）
+}
+
+// 関数を使う（呼び出す）
+sayHello("鈴木");
+sayHello("加藤");
+
+// 関数が返した値を変数に入れることもできる
+let suzukiGreeting = sayHello("鈴木");
+console.log("返ってきた値:", suzukiGreeting);
+</textarea>
+            <div class="controls">
+                <button class="run-button">実行</button>
+            </div>
+            <pre class="output-area">結果:</pre>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ページ内のすべてのインタラクティブコードブロックを取得
+            const codeBlocks = document.querySelectorAll('.interactive-code-block');
+
+            codeBlocks.forEach(block => {
+                const editor = block.querySelector('.code-editor');
+                const runButton = block.querySelector('.run-button');
+                const outputArea = block.querySelector('.output-area');
+                const originalLog = console.log; // 元のconsole.logを保存
+
+                runButton.addEventListener('click', () => {
+                    const code = editor.value;
+                    outputArea.textContent = '実行中...\n'; // 実行開始を表示
+                    let output = '';
+
+                    // console.logを一時的に上書きして出力をキャプチャ
+                    console.log = (...args) => {
+                        // 元のconsole.logも呼び出して、開発者ツールにも表示されるようにする
+                        originalLog.apply(console, args);
+                        // 引数を文字列に変換してoutputに追加
+                        output += args.map(arg => {
+                            // オブジェクトや配列は簡易的にJSON文字列に変換
+                            if (typeof arg === 'object' && arg !== null) {
+                                try {
+                                    return JSON.stringify(arg, null, 2); // 見やすく整形
+                                } catch (e) {
+                                    return String(arg); // JSONにできない場合は文字列に
+                                }
+                            }
+                            return String(arg);
+                        }).join(' ') + '\n';
+                    };
+
+                    try {
+                        // new Function() を使ってコードを実行
+                        // これにより、グローバルスコープを汚染しにくくなる
+                        const func = new Function(code);
+                        func();
+                        outputArea.textContent = '結果:\n' + output;
+                    } catch (error) {
+                        // エラーが発生した場合
+                        originalLog.error("コード実行エラー:", error); // 開発者ツールにもエラー表示
+                        outputArea.textContent = 'エラー:\n' + error.name + ': ' + error.message + '\n\n' + output; // 途中までの出力も表示
+                        outputArea.style.color = '#dc3545'; // エラーメッセージを赤色に
+                    } finally {
+                        // 実行後、console.logを元に戻す
+                        console.log = originalLog;
+                        // エラーでなかったら色を戻す
+                        if (!outputArea.textContent.startsWith('エラー:')) {
+                            outputArea.style.color = '#333';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
