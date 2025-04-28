@@ -1,22 +1,70 @@
 from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse, PlainTextResponse
+from pydantic import BaseModel
+from typing import List, Optional
+
+import sqlite3
 import os
 import uvicorn
-import random  # random モジュールをインポート
 
 app = FastAPI()
 
 BASE_DIR = os.path.dirname(__file__)
-
-# 天気予報のリスト
-weather_forecasts = ["晴れ", "曇り", "雨", "雪", "快晴", "強風"]
+DB_PATH = os.path.join(BASE_DIR, "data.db")
 
 
-# ランダムな天気予報を返す API エンドポイント
-@app.get("/weather")
-async def get_weather():
-    forecast = random.choice(weather_forecasts)
-    return {"weather": forecast}
+class DataBase(BaseModel):
+    id: Optional[int] = None
+    value_1: str
+    value_2: Optional[str] = None
+
+
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def initialize_db():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS data (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            value_1 TEXT NOT NULL,
+            value_2 TEXT
+        )
+        """
+    )
+    conn.commit()
+    conn.close()
+
+
+@app.get("/data", response_model=List[DataBase])
+def read_data_items():
+    conn = get_db_connection()
+    items = conn.execute("SELECT * FROM data").fetchall()
+    conn.close()
+    return [DataBase(**dict(item)) for item in items]
+
+
+@app.post("/data", response_model=DataBase, status_code=201)
+def create_data_item(item: DataBase):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO data (value_1, value_2) VALUES (?, ?)",
+        (item.value_1, item.value_2),
+    )
+    conn.commit()
+    item_id = cursor.lastrowid
+    conn.close()
+    return DataBase(
+        id=item_id,
+        value_1=item.value_1,
+        value_2=item.value_2,
+    )
 
 
 # ここから下は書き換えない
@@ -45,4 +93,5 @@ def read_js():
 
 
 if __name__ == "__main__":
+    initialize_db()
     uvicorn.run("server:app", host="127.0.0.1", port=8000, reload=True)

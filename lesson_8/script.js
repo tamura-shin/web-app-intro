@@ -1,47 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const weatherDisplay = document.getElementById('weather-display');
-    const getWeatherButton = document.getElementById('get-weather-button');
+    const dataList = document.getElementById('data-list');
+    const addDataForm = document.getElementById('add-data-form');
+    const value1Input = document.getElementById('value1');
+    const value2Input = document.getElementById('value2');
 
-    const weatherForecastDisplay = document.getElementById('weather-forecast-display');
-    const getWeatherForecastButton = document.getElementById('get-weather-forecast-button');
-
-    // 今日の天気を取得して表示する関数
-    async function fetchWeather() {
-        // 表示を更新中に変更
-        weatherDisplay.textContent = '今日の天気を取得中...';
+    // データ一覧を取得して表示する関数
+    async function fetchData() {
         try {
-            const response = await fetch('/weather'); // バックエンドの /weather エンドポイントにリクエスト
+            const response = await fetch('/data');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json(); // レスポンスをJSONとして解析
-            weatherDisplay.textContent = `今日の天気は「${data.weather}」です。`; // 取得した天気予報を表示
+            const data = await response.json();
+            dataList.innerHTML = ''; // 既存のリストをクリア
+            data.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `ID: ${item.id}, 値1: ${item.value_1}, 値2: ${item.value_2 || 'N/A'}`;
+                dataList.appendChild(listItem);
+            });
         } catch (error) {
-            console.error('今日の天気の取得に失敗しました:', error);
-            weatherDisplay.textContent = '今日の天気の取得に失敗しました。'; // エラーメッセージを表示
+            console.error('データの取得に失敗しました:', error);
+            dataList.innerHTML = '<li>データの取得に失敗しました。</li>';
         }
     }
 
-    // ボタンがクリックされたら今日の天気を取得
-    getWeatherButton.addEventListener('click', fetchWeather);
+    // データ追加フォームの送信イベントリスナー
+    addDataForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // デフォルトのフォーム送信をキャンセル
 
-    // 明日の天気を取得して表示する関数
-    async function fetchWeatherForecast() {
-        // 表示を更新中に変更
-        weatherForecastDisplay.textContent = '明日の天気を取得中...';
+        const value1 = value1Input.value;
+        const value2 = value2Input.value;
+
         try {
-            const response = await fetch('/weather-forecast'); // バックエンドの /weather-forecast エンドポイントにリクエスト
+            const response = await fetch('/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ value_1: value1, value_2: value2 }),
+            });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json(); // レスポンスをJSONとして解析
-            weatherForecastDisplay.textContent = `明日の天気は「${data.weather}」です。`; // 取得した天気予報を表示
-        } catch (error) {
-            console.error('明日の天気の取得に失敗しました:', error);
-            weatherForecastDisplay.textContent = '明日の天気の取得に失敗しました。'; // エラーメッセージを表示
-        }
-    }
 
-    // ボタンがクリックされたら明日の天気を取得
-    getWeatherForecastButton.addEventListener('click', fetchWeatherForecast);
+            // フォームをクリア
+            value1Input.value = '';
+            value2Input.value = '';
+
+            // データ一覧を再読み込み
+            await fetchData();
+
+        } catch (error) {
+            console.error('データの追加に失敗しました:', error);
+            alert('データの追加に失敗しました。');
+        }
+    });
+
+    // 初期データの読み込み
+    fetchData();
 });
