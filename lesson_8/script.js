@@ -3,6 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const addDataForm = document.getElementById('add-data-form');
     const value1Input = document.getElementById('value1');
     const value2Input = document.getElementById('value2');
+    // データ詳細セクションの要素を取得
+    const detailIdInput = document.getElementById('detail-id');
+    const fetchDetailButton = document.getElementById('fetch-detail');
+    const detailValue1Input = document.getElementById('detail-value1');
+    const detailValue2Input = document.getElementById('detail-value2');
+
+    // データ詳細を取得して表示する関数
+    async function fetchDetail(id) {
+        // 詳細表示欄をクリア
+        detailValue1Input.value = '';
+        detailValue2Input.value = '';
+        if (!id) {
+            alert('IDを入力してください。');
+            return;
+        }
+        try {
+            const response = await fetch(`/data/${id}`);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    alert('指定されたIDのデータが見つかりません。');
+                } else {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return; // エラー時は以降の処理を中断
+            }
+            const data = await response.json();
+            detailValue1Input.value = data.value_1;
+            detailValue2Input.value = data.value_2 || ''; // value_2がnullの場合、空文字を表示
+        } catch (error) {
+            console.error('データ詳細の取得に失敗しました:', error);
+            alert('データ詳細の取得に失敗しました。');
+        }
+    }
 
     // データ一覧を取得して表示する関数
     async function fetchData() {
@@ -55,6 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('データの追加に失敗しました:', error);
             alert('データの追加に失敗しました。');
         }
+    });
+
+    // 詳細取得ボタンのクリックイベントリスナー
+    fetchDetailButton.addEventListener('click', () => {
+        const id = detailIdInput.value;
+        fetchDetail(id);
     });
 
     // 初期データの読み込み
