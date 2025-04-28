@@ -52,7 +52,7 @@ def read_data_items():
 @app.get("/data/{item_id}", response_model=DataBase)
 def read_data_item(item_id: int):
     conn = get_db_connection()
-    item = conn.execute("SELECT * FROM data WHERE id = ?", (item_id,)).fetchone()
+    item = conn.execute("SELECT * FROM data WHERE id = ?", item_id).fetchone()
     conn.close()
     if item:
         return DataBase(
