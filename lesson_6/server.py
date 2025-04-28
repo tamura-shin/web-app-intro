@@ -2,7 +2,6 @@ from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse, PlainTextResponse
 import os
 import uvicorn
-import mimetypes
 
 app = FastAPI()
 
