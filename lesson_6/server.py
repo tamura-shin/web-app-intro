@@ -2,10 +2,21 @@ from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse, PlainTextResponse
 import os
 import uvicorn
+import random  # random モジュールをインポート
 
 app = FastAPI()
 
 BASE_DIR = os.path.dirname(__file__)
+
+# 天気予報のリスト
+weather_forecasts = ["晴れ", "曇り", "雨", "雪", "快晴", "強風"]
+
+
+# ランダムな天気予報を返す API エンドポイント
+@app.get("/weather")
+async def get_weather():
+    forecast = random.choice(weather_forecasts)
+    return {"weather": forecast}
 
 
 # ここから下は書き換えない
