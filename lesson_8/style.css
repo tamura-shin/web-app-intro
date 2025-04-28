@@ -59,3 +59,29 @@ button {
 button:hover {
     background-color: #004494;
 }
+
+/* データ詳細セクションのスタイル */
+#data-detail {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#data-detail label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#data-detail input[type="text"] {
+    width: calc(100% - 22px);
+    /* padding と border を考慮 */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee;
+    /* 無効状態を視覚的に示す */
+}
