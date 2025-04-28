@@ -3,31 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>じゃんけんアプリ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡単計算アプリ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>じゃんけん勝負！</h1>
+    <div class="container">
+        <h1>簡単計算アプリ</h1>
 
-    <div class="choices">
-        <p>あなたの手を選んでね:</p>
-        <button id="btn-rock">✊<span class="sr-only">グー</span></button>
-        <button id="btn-scissors">✌️<span class="sr-only">チョキ</span></button>
-        <button id="btn-paper">🖐️<span class="sr-only">パー</span></button>
+        <label for="numberInput">整数を入力:</label>
+        <input type="number" id="numberInput" placeholder="例: 50">
+
+        <div class="buttons">
+            <button id="addButton">+100</button>
+            <button id="subtractButton">-100</button>
+        </div>
+
+        <p id="result">結果:ここに計算結果が表示されます</p>
     </div>
 
-    <div id="result-area">
-        <p>あなた: <span id="player-hand">---</span></p>
-        <p>コンピューター: <span id="computer-hand">---</span></p>
-        <hr>
-        <p>結果: <span id="result">---</span></p>
-    </div>
-
-    <script src="script.js" defer></script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,84 +1,129 @@
-/* style.css */
+/* 全体的なスタイル */
 body {
     font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
+    /* 読みやすいフォントを指定 */
+    line-height: 1.6;
+    /* 行間を少し広げる */
     background-color: #f4f4f4;
+    /* 背景色を薄いグレーに */
+    margin: 0;
+    /* ブラウザ標準の余白をなくす */
+    padding: 20px;
+    /* 全体に少し余白を設ける */
+    display: flex;
+    /* コンテンツを中央揃えにしやすくする */
+    justify-content: center;
+    /* 水平方向の中央揃え */
+    align-items: center;
+    /* 垂直方向の中央揃え (画面の高さが必要) */
+    min-height: 90vh;
+    /* 画面の高さの90%を最低限の高さとする */
 }
 
+/* アプリ全体を囲むボックスのスタイル */
+.container {
+    background-color: #fff;
+    /* 背景を白に */
+    padding: 30px;
+    /* 内側の余白 */
+    border-radius: 8px;
+    /* 角を少し丸くする */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 薄い影をつける */
+    text-align: center;
+    /* 中の要素を中央揃えにする */
+    max-width: 400px;
+    /* 最大幅を指定 */
+    width: 90%;
+    /* 幅を90%にする */
+}
+
+/* 見出しのスタイル */
 h1 {
     color: #333;
-}
-
-.choices {
+    /* 文字色を濃いグレーに */
     margin-bottom: 20px;
+    /* 下に余白を設ける */
 }
 
-.choices button {
-    font-size: 1.5em;
-    /* 絵文字が大きく見えるように */
-    margin: 0 10px;
-    padding: 15px 25px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    background-color: #4CAF50;
-    color: white;
-    transition: background-color 0.3s;
-}
-
-.choices button:hover {
-    background-color: #45a049;
-}
-
-.choices button:active {
-    background-color: #3e8e41;
-}
-
-#result-area {
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    min-width: 250px;
-    text-align: center;
-}
-
-#result-area p {
-    margin: 10px 0;
-    font-size: 1.2em;
-}
-
-#player-hand,
-#computer-hand,
-#result {
+/* 入力欄のラベル */
+label {
+    display: block;
+    /* ラベルをブロック要素にして改行させる */
+    margin-bottom: 5px;
+    /* 下に少し余白 */
+    color: #555;
+    /* 少し薄いグレー */
     font-weight: bold;
-    font-size: 1.5em;
-    /* 手の表示を大きく */
-    display: inline-block;
-    /* 手の絵文字が縦にならないように */
-    min-width: 50px;
-    /* 表示幅を確保 */
-    text-align: center;
+    /* 少し太字に */
 }
 
+/* 入力欄のスタイル */
+input[type="number"] {
+    width: calc(100% - 22px);
+    /* 幅を親要素に合わせる (paddingとborderを考慮) */
+    padding: 10px;
+    /* 内側の余白 */
+    margin-bottom: 20px;
+    /* 下に余白 */
+    border: 1px solid #ccc;
+    /* 枠線 */
+    border-radius: 4px;
+    /* 角を少し丸く */
+    font-size: 1rem;
+    /* 文字サイズ */
+}
+
+/* ボタンを囲むdivのスタイル */
+.buttons {
+    margin-bottom: 20px;
+    /* 下に余白 */
+}
+
+/* ボタン共通のスタイル */
+button {
+    background-color: #007bff;
+    /* 背景色を青に */
+    color: white;
+    /* 文字色を白に */
+    border: none;
+    /* 枠線を消す */
+    padding: 10px 20px;
+    /* 内側の余白 (上下10px, 左右20px) */
+    margin: 5px;
+    /* ボタン同士の間に少し余白 */
+    border-radius: 4px;
+    /* 角を少し丸く */
+    cursor: pointer;
+    /* マウスカーソルを指マークに */
+    font-size: 1rem;
+    /* 文字サイズ */
+    transition: background-color 0.2s;
+    /* 背景色が変わるアニメーション */
+}
+
+/* ボタンにマウスが乗った時のスタイル */
+button:hover {
+    background-color: #0056b3;
+    /* 少し濃い青に */
+}
+
+/* 結果表示エリアのスタイル */
 #result {
-    color: #d32f2f;
-    /* 結果の色を赤に */
-}
-
-/* 画面読み上げソフト用の隠しテキスト */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+    margin-top: 20px;
+    /* 上に余白 */
+    font-size: 1.2rem;
+    /* 文字を少し大きく */
+    font-weight: bold;
+    /* 太字に */
+    color: #333;
+    /* 濃いグレー */
+    min-height: 1.2em;
+    /* 結果表示エリアの高さを確保 */
+    background-color: #e9e9e9;
+    /* 結果表示エリアの背景色 */
+    padding: 10px;
+    /* 内側の余白 */
+    border-radius: 4px;
+    /* 角を丸く */
 }
