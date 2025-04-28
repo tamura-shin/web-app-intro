@@ -41,12 +41,12 @@ def initialize_db():
     conn.close()
 
 
-@app.get("/data", response_model=List[DataBase])
+@app.get("/data", response_model=List)
 def read_data_items():
     conn = get_db_connection()
-    items = conn.execute("SELECT * FROM data").fetchall()
+    items = conn.execute("SELECT id FROM data").fetchall()
     conn.close()
-    return [DataBase(**dict(item)) for item in items]
+    return [item["id"] for item in items]
 
 
 @app.post("/data", response_model=DataBase, status_code=201)
