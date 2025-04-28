@@ -57,7 +57,10 @@ def read_data_items():
 def read_data_item(item_id: int):
     # データベースへの接続を取得する
     conn = get_db_connection()
-    item = conn.execute("SELECT * FROM data WHERE id = ?", (item_id,)).fetchone()
+
+    # TODO: 課題　idに対応するデータを取得するSQLをexecute内に書く
+    # テーブル名は data
+    item = conn.execute("SELECT * FROM data WHERE id = ?", item_id).fetchone()
 
     # データベース接続を閉じる (リソースの解放)
     conn.close()
