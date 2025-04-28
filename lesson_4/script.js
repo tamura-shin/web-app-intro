@@ -43,6 +43,7 @@ function playGame(playerChoiceIndex) {
         resultText = RESULTS.DRAW;
     }
 
+    // TODO: 課題
     // ここから先を実装してください
     // プレイヤーが勝つ場合と負けるが必要そう・・・
     // プレイヤーが勝つ場合の文章はRESULTS.WIN
