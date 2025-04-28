@@ -1,65 +1,47 @@
-// HTML要素を取得して、変数に保存しておく
-// constは再代入できない変数を宣言するキーワード
-const numberInput = document.getElementById('numberInput'); // id="numberInput" の要素を取得
-const addButton = document.getElementById('addButton');       // id="addButton" の要素を取得
-const subtractButton = document.getElementById('subtractButton'); // id="subtractButton" の要素を取得
-const resultDisplay = document.getElementById('result');     // id="result" の要素を取得
+document.addEventListener('DOMContentLoaded', () => {
+    const weatherDisplay = document.getElementById('weather-display');
+    const getWeatherButton = document.getElementById('get-weather-button');
 
-// --- 関数定義 ---
-// 入力値を取得し、数値に変換する関数
-function getInputNumber() {
-    // numberInputの値（文字列）を取得
-    const inputValue = numberInput.value;
+    const weatherForecastDisplay = document.getElementById('weather-forecast-display');
+    const getWeatherForecastButton = document.getElementById('get-weather-forecast-button');
 
-    // 入力が空文字の場合は、エラーメッセージを表示して null を返す
-    if (inputValue === '') {
-        resultDisplay.textContent = '結果: 数値を入力してください';
-        // スタイルを変更してエラーを目立たせる (任意)
-        resultDisplay.style.color = 'red';
-        return null; // null は「値がない」ことを示す特別な値
+    // 今日の天気を取得して表示する関数
+    async function fetchWeather() {
+        // 表示を更新中に変更
+        weatherDisplay.textContent = '今日の天気を取得中...';
+        try {
+            const response = await fetch('/weather'); // バックエンドの /weather エンドポイントにリクエスト
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json(); // レスポンスをJSONとして解析
+            weatherDisplay.textContent = `今日の天気は「${data.weather}」です。`; // 取得した天気予報を表示
+        } catch (error) {
+            console.error('今日の天気の取得に失敗しました:', error);
+            weatherDisplay.textContent = '今日の天気の取得に失敗しました。'; // エラーメッセージを表示
+        }
     }
 
-    // 文字列を整数に変換する
-    // parseInt(文字列, 10) は文字列を10進数の整数に変換する関数
-    const inputNumber = parseInt(inputValue, 10);
+    // ボタンがクリックされたら今日の天気を取得
+    getWeatherButton.addEventListener('click', fetchWeather);
 
-    // 変換結果が数値でない場合 (例: "abc"などを入力した場合) はエラー
-    // isNaN(値) は値が数値でない(Not a Number)場合に true を返す関数
-    if (isNaN(inputNumber)) {
-        resultDisplay.textContent = '結果: 有効な整数を入力してください';
-        resultDisplay.style.color = 'red'; // エラーメッセージを赤色に
-        return null;
+    // 明日の天気を取得して表示する関数
+    async function fetchWeatherForecast() {
+        // 表示を更新中に変更
+        weatherForecastDisplay.textContent = '明日の天気を取得中...';
+        try {
+            const response = await fetch('/weather-forecast'); // バックエンドの /weather-forecast エンドポイントにリクエスト
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json(); // レスポンスをJSONとして解析
+            weatherForecastDisplay.textContent = `明日の天気は「${data.weather}」です。`; // 取得した天気予報を表示
+        } catch (error) {
+            console.error('明日の天気の取得に失敗しました:', error);
+            weatherForecastDisplay.textContent = '明日の天気の取得に失敗しました。'; // エラーメッセージを表示
+        }
     }
 
-    // エラーがなければ、変換した数値を返す
-    // 正常な場合は文字色を元に戻す
-    resultDisplay.style.color = '#333'; // CSSで指定した元の色に戻す
-    return inputNumber;
-}
-
-// 100を足す関数
-function add100() {
-    // 入力値を取得（エラーチェックも含む）
-    const currentNumber = getInputNumber();
-
-    // currentNumberが null でない場合（有効な数値が入力された場合）のみ計算
-    if (currentNumber !== null) {
-        const result = currentNumber + 100;
-        // 結果を表示エリアに表示
-        resultDisplay.textContent = '結果: ' + result;
-    }
-}
-
-// 100を引く関数
-function subtract100() {
-    // TODO: 課題
-    // 中身を実装する
-    // add100を参考にして実装してください
-}
-
-// --- イベントリスナーの設定 ---
-// 「+100」ボタンがクリックされたら、add100関数を実行するように設定
-addButton.addEventListener('click', add100);
-
-// TODO: 課題
-// 「-100」ボタンがクリックされたら、subtract100関数を実行するように設定
+    // ボタンがクリックされたら明日の天気を取得
+    getWeatherForecastButton.addEventListener('click', fetchWeatherForecast);
+});
