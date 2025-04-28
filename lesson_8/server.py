@@ -49,19 +49,31 @@ def read_data_items():
     return [item["id"] for item in items]
 
 
+# FastAPIのデコレータ。GETリクエストで "/data/{item_id}"
+# というパスにアクセスがあった場合に、この関数を実行する
+# {item_id} はパスパラメータと呼ばれ、URLの一部として渡される値。
+# 例えば /data/5 にアクセスすると item_id は 5 になる
 @app.get("/data/{item_id}", response_model=DataBase)
 def read_data_item(item_id: int):
+    # データベースへの接続を取得する
     conn = get_db_connection()
-    item = conn.execute("SELECT * FROM data WHERE id = ?", item_id).fetchone()
+    item = conn.execute("SELECT * FROM data WHERE id = ?", (item_id,)).fetchone()
+
+    # データベース接続を閉じる (リソースの解放)
     conn.close()
+
+    # 取得したデータが存在する場合 (itemがNoneでない場合)
     if item:
+        # APIのレスポンスとして、取得したデータをDataBaseモデルに基づいて返す
         return DataBase(
-            id=item["id"],
-            value_1=item["value_1"],
-            value_2=item["value_2"],
+            id=item["id"],  # 取得したデータのid
+            value_1=item["value_1"],  # 取得したデータのvalue_1
+            value_2=item["value_2"],  # 取得したデータのvalue_2
         )
 
-    # Return 404 if item not found
+    # 取得したデータが存在しない場合 (itemがNoneの場合)
+    # HTTPステータスコード404 (Not Found) を返すResponseオブジェクトを生成して返す
+    # これにより、クライアントは指定されたIDのデータが見つからなかったことを知ることができる
     return Response(status_code=404)
 
 
