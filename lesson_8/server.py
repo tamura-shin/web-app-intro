@@ -49,6 +49,22 @@ def read_data_items():
     return [item["id"] for item in items]
 
 
+@app.get("/data/{item_id}", response_model=DataBase)
+def read_data_item(item_id: int):
+    conn = get_db_connection()
+    item = conn.execute("SELECT * FROM data WHERE id = ?", (item_id,)).fetchone()
+    conn.close()
+    if item:
+        return DataBase(
+            id=item["id"],
+            value_1=item["value_1"],
+            value_2=item["value_2"],
+        )
+
+    # Return 404 if item not found
+    return Response(status_code=404)
+
+
 @app.post("/data", response_model=DataBase, status_code=201)
 def create_data_item(item: DataBase):
     conn = get_db_connection()
