@@ -41,7 +41,9 @@ def read_js():
     js_file_path = os.path.join(BASE_DIR, "script.js")
     with open(js_file_path, "r", encoding="utf-8") as f:
         js_content = f.read()
-    return PlainTextResponse(content=js_content, status_code=200)
+    return PlainTextResponse(
+        content=js_content, status_code=200, media_type="application/javascript"
+    )
 
 
 if __name__ == "__main__":
