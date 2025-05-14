@@ -36,6 +36,19 @@ function playGame(playerChoiceIndex) {
     // 勝敗判定
     let resultText = '';
 
+    // TODO: 課題
+    // ここから先を実装してください
+    // どういう手の組み合わせがあるか考えることが必要そう・・・
+    // プレイヤーが勝つ場合の文章はRESULTS.WIN
+    // プレイヤーが負ける場合の文章はRESULTS.LOSE
+    // playerChoiceIndexが0のとき =「プレイヤーの手がグー」
+    // computerChoiceIndexが2のとき =「コンピューターの手がパー」
+
+    
+
+
+    // ここまで
+
     // あいこ
     // プレイヤーの手(playerChoiceIndex)とコンピューターの手(computerChoiceIndex)が同じ場合
     if (playerChoiceIndex === computerChoiceIndex) {
@@ -43,17 +56,6 @@ function playGame(playerChoiceIndex) {
         resultText = RESULTS.DRAW;
     }
 
-    // TODO: 課題
-    // ここから先を実装してください
-    // プレイヤーが勝つ場合と負けるが必要そう・・・
-    // プレイヤーが勝つ場合の文章はRESULTS.WIN
-    // プレイヤーが負ける場合の文章はRESULTS.LOSE
-    // playerChoiceIndexが0のとき =「プレイヤーの手がグー」
-    // computerChoiceIndexが2のとき =「コンピューターの手がパー」
-
-
-
-    // ここまで
     // 結果を表示
     resultElement.textContent = resultText;
 }
