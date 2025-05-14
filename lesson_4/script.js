@@ -48,6 +48,8 @@ function playGame(playerChoiceIndex) {
     // プレイヤーが勝つ場合と負けるが必要そう・・・
     // プレイヤーが勝つ場合の文章はRESULTS.WIN
     // プレイヤーが負ける場合の文章はRESULTS.LOSE
+    // playerChoiceIndexが0のとき =「プレイヤーの手がグー」
+    // computerChoiceIndexが2のとき =「コンピューターの手がパー」
 
 
 
