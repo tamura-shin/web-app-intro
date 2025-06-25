@@ -52,6 +52,13 @@ function add100() {
 
 // 100を引く関数
 function subtract100() {
+    const currentNumber = getInputNumber();
+
+    if (currentNumber !== null) {
+        const result = currentNumber - 100;
+
+        resultDisplay.textContent = '結果: ' + result;
+    }
     // TODO: 課題
     // 中身を実装する
     // add100を参考にして実装してください
@@ -63,3 +70,4 @@ addButton.addEventListener('click', add100);
 
 // TODO: 課題
 // 「-100」ボタンがクリックされたら、subtract100関数を実行するように設定
+subtractButton.addEventListener('click', subtract100);

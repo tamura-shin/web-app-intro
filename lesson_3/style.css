@@ -1,0 +1,56 @@
+body {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #ff4500, #ff8c00, #ffd700);
+    /* 炎のようなグラデーション */
+    animation: flame-animation 3s infinite alternate;
+    /* 背景にアニメーションを追加 */
+    color: #4e342e;
+    /* 落ち着いた文字色 */
+    line-height: 1.8;
+}
+
+/* 炎のアニメーション */
+@keyframes flame-animation {
+    0% {
+        background: linear-gradient(180deg, #ff4500, #ff8c00, #ffd700);
+    }
+
+    50% {
+        background: linear-gradient(180deg, #ff6347, #ffa500, #ffff00);
+    }
+
+    100% {
+        background: linear-gradient(180deg, #ff4500, #ff8c00, #ffd700);
+    }
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    color: #ffffff;
+    /* 白い文字で炎の背景に映える */
+    text-shadow: 2px 2px 5px #000000;
+    /* 軽い影を追加 */
+    margin-bottom: 30px;
+}
+
+p,
+ol,
+li {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #ffffff;
+    /* 白い文字 */
+    text-shadow: 1px 1px 3px #000000;
+    /* 文字を読みやすくするための影 */
+}
+
+video {
+    display: block;
+    margin: 20px auto;
+    border: 3px solid #ffffff;
+    /* 動画に白い枠を追加 */
+    border-radius: 10px;
+}
