@@ -59,3 +59,66 @@ button {
 button:hover {
     background-color: #004494;
 }
+calendar-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.calendar-table {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 8px rgba(0,0,0,0.08);
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+    min-width: 280px;
+    max-width: 320px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.calendar-table caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 12px 0 8px 0;
+    color: #0056b3;
+    background: #eaf2fd;
+    border-bottom: 1px solid #cce0f6;
+}
+
+.calendar-table th,
+.calender-table td{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.calendar-table th {
+    background: #eaf2fd;
+    color: #0056b3;
+    font-weight: bold;
+    border-bottom: 1px solid #cce0f6;
+}
+
+.calendar-table td {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 2px;
+    font-size: 1em;
+    transition: background 0,2s;
+}
+
+.calendar-table td:not(:empty):hover{
+    background: #cce0f6;
+    cursor: pointer;
+}
+
+.calendar-table td:empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+}
