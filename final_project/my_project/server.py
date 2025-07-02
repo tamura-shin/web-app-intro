@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, HTTPException
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
 from typing import List, Optional
@@ -17,6 +17,7 @@ class DataBase(BaseModel):
     id: Optional[int] = None
     value_1: str
     value_2: Optional[str] = None
+    value_3: Optional[str] = None
 
 
 def get_db_connection():
@@ -33,7 +34,8 @@ def initialize_db():
         CREATE TABLE IF NOT EXISTS data (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             value_1 TEXT NOT NULL,
-            value_2 TEXT
+            value_2 TEXT,
+            value_3 TEXT
         )
         """
     )
@@ -54,8 +56,8 @@ def create_data_item(item: DataBase):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "INSERT INTO data (value_1, value_2) VALUES (?, ?)",
-        (item.value_1, item.value_2),
+        "INSERT INTO data (value_1, value_2, value_3) VALUES (?, ?, ?)",
+        (item.value_1, item.value_2, item.value_3),
     )
     conn.commit()
     item_id = cursor.lastrowid
@@ -64,7 +66,18 @@ def create_data_item(item: DataBase):
         id=item_id,
         value_1=item.value_1,
         value_2=item.value_2,
+        value_3=item.value_3,
     )
+
+
+@app.get("/data/{item_id}", response_model=DataBase)
+def read_data_item(item_id: int):
+    conn = get_db_connection()
+    item = conn.execute("SELECT * FROM data WHERE id = ?", (item_id,)).fetchone()
+    conn.close()
+    if item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return DataBase(**dict(item))
 
 
 # ここから下は書き換えない

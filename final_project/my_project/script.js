@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addDataForm = document.getElementById('add-data-form');
     const value1Input = document.getElementById('value1');
     const value2Input = document.getElementById('value2');
+    const value3Input = document.getElementById('value3');
 
     // データ一覧を取得して表示する関数
     async function fetchData() {
@@ -15,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
             dataList.innerHTML = ''; // 既存のリストをクリア
             data.forEach(item => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `ID: ${item.id}, 値1: ${item.value_1}, 値2: ${item.value_2 || 'N/A'}`;
+                listItem.textContent = `ID: ${item.id}, 記入日: ${item.value_1}, 題名: ${item.value_2 || 'N/A'}`;
+                listItem.addEventListener('click', () => {
+                    alert(item.value_3 || '?');
+                });
                 dataList.appendChild(listItem);
             });
         } catch (error) {
@@ -30,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const value1 = value1Input.value;
         const value2 = value2Input.value;
+        const value3 = value3Input.value;
 
         try {
             const response = await fetch('/data', {
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ value_1: value1, value_2: value2 }),
+                body: JSON.stringify({ value_1: value1, value_2: value2, value_3: value3 }),
             });
 
             if (!response.ok) {
@@ -47,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // フォームをクリア
             value1Input.value = '';
             value2Input.value = '';
+            value3Input.value = '';
 
             // データ一覧を再読み込み
             await fetchData();
@@ -54,6 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('データの追加に失敗しました:', error);
             alert('データの追加に失敗しました。');
+        }
+    });
+
+    // 「内容確認」フォームの送信イベントリスナーを追加
+    const viewDataForm = document.getElementById('view-data-form');
+    const viewIdInput = document.getElementById('view-id');
+
+    viewDataForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const id = viewIdInput.value.trim();
+        if (!id) return;
+
+        try {
+            const response = await fetch(`/data/${id}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const item = await response.json();
+            alert(item.value_3 || '本文がありません');
+        } catch (error) {
+            console.error('データの取得に失敗しました:', error);
+            alert('データの取得に失敗しました。');
         }
     });
 
