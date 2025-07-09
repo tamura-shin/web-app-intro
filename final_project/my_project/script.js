@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const value2Input = document.getElementById('value2');
     const value3Input = document.getElementById('value3');
 
+
+    
+
     // データ一覧を取得して表示する関数
     async function fetchData() {
         try {
