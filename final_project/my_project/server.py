@@ -2,6 +2,7 @@ from fastapi import FastAPI, Response, HTTPException
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from pydantic import BaseModel
 from typing import List, Optional
+from fastapi.responses import FileResponse
 
 import sqlite3
 import os
@@ -43,13 +44,17 @@ def initialize_db():
     conn.close()
 
 
+@app.get("/DarkSoul.jpg")
+def read_bg_image():
+    image_path = os.path.join(BASE_DIR, "DarkSoul.jpg")
+    return FileResponse(image_path, media_type="image/jpeg")
+
 @app.get("/data", response_model=List[DataBase])
 def read_data_items():
     conn = get_db_connection()
     items = conn.execute("SELECT * FROM data").fetchall()
     conn.close()
     return [DataBase(**dict(item)) for item in items]
-
 
 @app.post("/data", response_model=DataBase, status_code=201)
 def create_data_item(item: DataBase):

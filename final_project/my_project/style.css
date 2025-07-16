@@ -1,8 +1,8 @@
 body {
     font-family: sans-serif;
     margin: 20px;
-    background-color: #000;
-    color: #fff;
+    background-color: transparent;
+    color: #f5f5f5;               /* 文字色もダークに */
 }
 
 h1,
@@ -16,7 +16,7 @@ ul {
 }
 
 li {
-    background-color: #111;
+    background-color: transparent;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
@@ -24,7 +24,7 @@ li {
 }
 
 form {
-    background-color: #111;
+    background-color: transparent;
     color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -39,7 +39,7 @@ label {
 }
 
 input[type="text"] {
-    background-color: #222;
+    background-color: transparent;
     color: #fff;
     border: 1px solid #444;
     width: calc(100% - 22px);
@@ -69,19 +69,6 @@ button:hover {
     margin-bottom: 40px;
 }
 
-.calendar-table {
-    background: #111;
-    color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px 8px rgba(0,0,0,0.08);
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 0;
-    min-width: 280px;
-    max-width: 320px;
-    width: 100%;
-    overflow: hidden;
-}
 
 .calendar-table caption {
     font-weight: bold;
@@ -106,36 +93,14 @@ button:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  opacity: 0.4;
+  background-image: url("DarkSoul.jpg"); /* 画像ファイル名を指定 */
+  background-size: cover;                  /* 画面全体に拡大 */
+  background-position: center;             /* 中央寄せ */
+  background-repeat: no-repeat;            /* 繰り返しなし */
+  opacity: 0.8;
   z-index: -1;
 }
-.Paper_v2 {
-  background-image:
-    repeating-linear-gradient(to bottom,
-      transparent 25px,
-      rgba(0, 0, 0, 0.04) 26px,  rgba(0, 0, 0, 0.04) 26px,
-      transparent 27px,  transparent 51px, 
-      rgba(0, 0, 0, 0.04) 52px,  rgba(0, 0, 0, 0.04) 52px,
-      transparent 53px,  transparent 77px, 
-      rgba(0, 0, 0, 0.04) 78px,  rgba(0, 0, 0, 0.04) 78px,
-      transparent 79px,  transparent 103px, 
-      rgba(0, 0, 0, 0.04) 104px,  rgba(0, 0, 0, 0.04) 104px,
-      transparent 105px,  transparent 129px, 
-      rgba(0, 0, 0, 0.04) 130px,  rgba(0, 0, 0, 0.04) 130px),
-  
-    repeating-linear-gradient(to right,
-      transparent 25px,
-      rgba(0, 0, 0, 0.04) 26px,  rgba(0, 0, 0, 0.04) 26px,
-      transparent 27px,  transparent 51px, 
-      rgba(0, 0, 0, 0.04) 52px,  rgba(0, 0, 0, 0.04) 52px,
-      transparent 53px,  transparent 77px, 
-      rgba(0, 0, 0, 0.04) 78px,  rgba(0, 0, 0, 0.04) 78px,
-      transparent 79px,  transparent 103px, 
-      rgba(0, 0, 0, 0.04) 104px,  rgba(0, 0, 0, 0.04) 104px,
-      transparent 105px,  transparent 129px, 
-      rgba(0, 0, 0, 0.04) 130px,  rgba(0, 0, 0, 0.04) 130px);
-}
+
 .calendar-table th {
     background: #222;
     color: #fff;
