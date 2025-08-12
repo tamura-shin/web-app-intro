@@ -4,7 +4,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const value1Input = document.getElementById('value1');
     const value2Input = document.getElementById('value2');
     const value3Input = document.getElementById('value3');
+    const snowCanvas = document.getElementById('snow-canvas');
 
+
+    if (snowCanvas) {
+        const ctx = snowCanvas.getContext('2d');
+        snowCanvas.width = window.innerWidth;
+        snowCanvas.height = window.innerHeight;
+
+
+        function createSnowflakes() {
+            const flakes = [];
+            for (let i = 0; i < 100; i++) {
+                flakes.push({
+                    x: Math.random() * snowCanvas.width,
+                    y: Math.random() * snowCanvas.height,
+                    radius: Math.random() * 4 + 1,
+                    speed: Math.random() * 1 + 0.5
+                });
+            }
+            return flakes;
+        }
+
+        
+        function drawSnowflakes(flakes) {
+            ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            flakes.forEach(flake => {
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                ctx.fill();
+                flake.y += flake.speed;
+                if (flake.y > snowCanvas.height) {
+                    flake.y = -flake.radius;
+                    flake.x = Math.random() * snowCanvas.width;
+                }
+            });
+            requestAnimationFrame(() => drawSnowflakes(flakes));
+        }
+
+        const flakes = createSnowflakes();
+        drawSnowflakes(flakes);
+    }
 
     
 
