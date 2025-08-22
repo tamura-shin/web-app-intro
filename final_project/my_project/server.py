@@ -21,7 +21,6 @@ class DataBase(BaseModel):
     value_3: Optional[str] = None
 
 
-
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row

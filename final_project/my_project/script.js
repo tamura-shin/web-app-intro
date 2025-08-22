@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    
 
     // データ一覧を取得して表示する関数
     async function fetchData() {
