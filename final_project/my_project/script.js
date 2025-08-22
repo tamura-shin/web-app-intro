@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawSnowflakes(flakes);
     }
 
+
     
 
     // データ一覧を取得して表示する関数
